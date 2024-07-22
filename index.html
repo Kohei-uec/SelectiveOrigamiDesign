@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <meta charset="utf-8">
+        <title>test</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+        <script src="https://kit.fontawesome.com/10f2f78404.js"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./style.css">
+
+        <script type="module" src="./js/main.js"></script>
+        <script type="module" src="./js/navbar.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    ORIGAMI FACE MAKER
+                </a>
+                <div class="navbar-burger js-burger"
+                    data-target="navbarExampleTransparentExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </div>
+            </div>
+
+            <div id="navbarExampleTransparentExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/"> Home </a>
+                    <div class="navbar-item has-dropdown  is-hoverable">
+                        <a class="navbar-link"
+                            href="#">
+                            Docs </a>
+                        <div class="navbar-dropdown is-boxed">
+                            <a class="navbar-item" href="#">
+                                Overview </a>
+                            <a class="navbar-item" href="#">
+                                Modifiers </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="#">
+                                Columns </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+
+                            <p class="control">
+                                <a class="button is-primary" href="#">
+                                    <span class="icon">
+                                        <i class="fas fa-download"></i>
+                                    </span>
+                                    <span>Download</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="columns is-desktop">
+                <section class="column is-one-third section content">
+                    <div class="level">
+                        <div class="level-item">
+                            <h2>構造</h2>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="tree-node">
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>正方形</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>魚の基本形</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="file name">
+                        </p>
+                        <p class="control">
+                            <span class="select">
+                                <select>
+                                    <option>.cp</option>
+                                    <option>.png</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p class="control">
+                            <button class="button is-primary">保存</button>
+                        </p>
+                    </div>
+
+                </section>
+
+                <section class="column is-one-third section content">
+                    <div class="level">
+                        <div class="level-item">
+                            <h2>展開図</h2>
+                        </div>
+                    </div>
+
+                    <div class="wrap-canvas">
+                        <canvas id="cp_canvas"></canvas>
+                    </div>
+
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="file name">
+                        </p>
+                        <p class="control">
+                            <span class="select">
+                                <select>
+                                    <option>.cp</option>
+                                    <option>.png</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p class="control">
+                            <button class="button is-primary">保存</button>
+                        </p>
+                    </div>
+
+                </section>
+
+                <section class="column is-one-third section content">
+                    <div class="level">
+                        <div class="level-item">
+                            <h2>折り畳み図</h2>
+                        </div>
+                    </div>
+
+                    <div class="wrap-canvas">
+                        <canvas id="tree_canvas"></canvas>
+                    </div>
+
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="file name">
+                        </p>
+                        <p class="control">
+                            <span class="select">
+                                <select>
+                                    <option>.cp</option>
+                                    <option>.png</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p class="control">
+                            <button class="button is-primary">保存</button>
+                        </p>
+                    </div>
+
+                </section>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita, 2024
+
+                </p>
+                <p>
+                    <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
+                    The source code is licensed<a href="https://opensource.org/license/mit">MIT</a>.
+                    The website content is licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//">CC BY NC SA 4.0</a>.
+                </p>
+            </div>
+        </footer>
+
+    </body>
+</html>

@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
         <meta charset="utf-8">
-        <title>test</title>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
-        <script src="https://kit.fontawesome.com/10f2f78404.js"
-            crossorigin="anonymous"></script>
+        <title>ORIGAMI FM</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+        <script src="https://kit.fontawesome.com/10f2f78404.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./style.css">
 
         <script type="module" src="./js/main.js"></script>
@@ -37,24 +33,19 @@
             <div id="navbarExampleTransparentExample" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" href="/"> Home </a>
+                    <a class="navbar-item" href="/"> About </a>
                     <div class="navbar-item has-dropdown  is-hoverable">
-                        <a class="navbar-link"
-                            href="#">
-                            Docs </a>
+                        <a class="navbar-link" href="#"> Example </a>
                         <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item" href="#">
-                                Overview </a>
-                            <a class="navbar-item" href="#">
-                                Modifiers </a>
+                            <a class="navbar-item" href="#"> Example1 </a>
+                            <a class="navbar-item" href="#"> Example2 </a>
                             <hr class="navbar-divider">
-                            <a class="navbar-item" href="#">
-                                Columns </a>
-
+                            <a class="navbar-item" href="#"> Example3 </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="navbar-end">
+                <!--                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="field is-grouped">
 
@@ -68,7 +59,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </nav>
 
@@ -107,7 +98,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>Select dropdown</option>
+                                    <option>右目のパーツ</option>
                                     <option>With options</option>
                                 </select>
                             </div>
@@ -118,7 +109,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>Select dropdown</option>
+                                    <option>左目のパーツ</option>
                                     <option>With options</option>
                                 </select>
                             </div>
@@ -129,7 +120,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>Select dropdown</option>
+                                    <option>口のパーツ</option>
                                     <option>With options</option>
                                 </select>
                             </div>
@@ -140,7 +131,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>Select dropdown</option>
+                                    <option>鼻のパーツ</option>
                                     <option>With options</option>
                                 </select>
                             </div>
@@ -149,18 +140,53 @@
 
                     <div class="field has-addons">
                         <p class="control">
-                            <input class="input" type="text" placeholder="file name">
-                        </p>
-                        <p class="control">
                             <span class="select">
                                 <select>
-                                    <option>.cp</option>
-                                    <option>.png</option>
+                                    <option>project name</option>
+                                    <option>project name</option>
                                 </select>
                             </span>
                         </p>
                         <p class="control">
-                            <button class="button is-primary">保存</button>
+                            <button class="button">Load from Browser</button>
+                        </p>
+                    </div>
+
+                    <div class="file has-name">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="resume" accept=".json" />
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label"> Choose a file… </span>
+                            </span>
+                            <span class="file-name"> ProjectFile.json </span>
+                        </label>
+                    </div>
+
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="project name">
+                        </p>
+                        <p class="control">
+                            <button class="button">Save in Browser</button>
+                        </p>
+                    </div>
+
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="file name">
+                        </p>
+                        <p class="control">
+                            <span class="select">
+                                <select disabled>
+                                    <option>.json</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p class="control">
+                            <button class="button is-primary">Download</button>
                         </p>
                     </div>
 
@@ -236,8 +262,8 @@
 
                 </p>
                 <p>
-                    <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
-                    The source code is licensed<a href="https://opensource.org/license/mit">MIT</a>.
+                    with <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
+                    The source code is licensed <a href="https://opensource.org/license/mit">MIT</a>.
                     The website content is licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//">CC BY NC SA 4.0</a>.
                 </p>
             </div>

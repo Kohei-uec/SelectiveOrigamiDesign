@@ -1,9 +1,20 @@
 import { Vec2d } from "./vec2d.js";
 
+function edgeStr(typeNum) {//follow .FOLD
+    const t = {
+        0: 'N',//none
+        1: 'B',
+        2: 'M',
+        3: 'V',
+    }
+    return t[typeNum];
+}
+
 export class CP {
     constructor(obj) {
         this.vertices_coords = [];
         this.edges_vertices = [];
+        this.edges_assignment = [];
 
         if (obj && obj.vertices_coords && obj.lines_vertices) {
             this.vertices_coords = obj.vertices_coords;
@@ -14,6 +25,11 @@ export class CP {
             this.initSquare();
         }
     }
+    static line = {
+        cut: 1,
+        mountain: 2,
+        valley: 3
+    };
     static parse(cp_txt) {
         const lines = this.txt2lines(cp_txt);
         return this.lines2cp(lines);
@@ -39,7 +55,8 @@ export class CP {
         for (const l of lines) {
             const v1_index = cp.add_v(l[1], l[2]);
             const v2_index = cp.add_v(l[3], l[4]);
-            cp.add_e(v1_index, v2_index)
+            const e = cp.add_e(v1_index, v2_index);
+            cp.add_a(l[0], e);
         }
         return cp;
     }
@@ -58,6 +75,13 @@ export class CP {
             [1, 2],
             [2, 3],
             [3, 0],
+        ]
+
+        this.edges_assignment = [
+            CP.line.cut,
+            CP.line.cut,
+            CP.line.cut,
+            CP.line.cut,
         ]
     }
 
@@ -81,5 +105,15 @@ export class CP {
             return l;
         }
     }
+    add_a(type, edge) {
+        if (edge < this.edges_assignment.length) {
+            this.edges_assignment[e] = type;
+            return
+        } else if (edge === this.edges_assignment.length) {
+            this.edges_assignment.push(type);
+            return;
+        }
+        throw Error('out of edge index');
 
+    }
 }

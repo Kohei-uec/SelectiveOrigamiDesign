@@ -2,8 +2,13 @@ import { CanvasResize } from "./canvas.js";
 import { CP } from "./cp.js";
 import { CPView } from "./cp_view.js";
 
-console.log('main.js load');
-let cp = new CP();
+async function loadCPFile(path) {
+    const resp = await fetch(path);
+    const text = await resp.text();
+    return CP.parse(text);
+}
+
+let cp = await loadCPFile("../cp_data/fish.cp");
 const cp_canvas = document.getElementById('cp_canvas');
 const cp_view = new CPView(cp_canvas, cp);
 cp_view.draw();

@@ -1,9 +1,17 @@
 .wrap-canvas {
+    box-sizing: border-box;
     width: 100%;
-    aspect-ratio: 1;
-    background-color: aqua;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
 
     margin-bottom: 1em;
+    margin-top: 0;
+    padding: 0;
+}
+
+canvas {
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
 }
 

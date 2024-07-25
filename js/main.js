@@ -2,6 +2,9 @@ import { CanvasResize } from "./canvas.js";
 import { CP } from "./cp.js";
 import { CPView } from "./cp_view.js";
 
+//import Ear from "https://rabbit-ear.github.io/rabbit-ear/src/index.js"
+//console.log(Ear.webgl);
+
 async function loadCPFile(path) {
     const resp = await fetch(path);
     const text = await resp.text();

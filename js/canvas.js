@@ -12,7 +12,7 @@ export class CanvasResize {
         this.dom.height = l;
         this.dom.width = l;
         if (this.resizeListener) {
-            this.resizeListener();
+            this.resizeListener(l);
         }
     }
 }

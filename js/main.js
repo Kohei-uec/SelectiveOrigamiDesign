@@ -1,6 +1,7 @@
 import { CanvasResize } from "./canvas.js";
 import { CP } from "./cp.js";
 import { CPView } from "./cp_view.js";
+import { FOLDView } from "./fold_view.js";
 
 //import Ear from "https://rabbit-ear.github.io/rabbit-ear/src/index.js"
 //console.log(Ear.webgl);
@@ -38,6 +39,6 @@ new CanvasResize(cp_canvas, wrap_cp, () => { cp_view.draw() });
 //fold
 const fold_canvas = document.getElementById('fold_canvas');
 const wrap_fold = document.getElementById('wrap_fold_canvas');
-const fold_view = new CPView(fold_canvas, cp);
-new CanvasResize(fold_canvas, wrap_fold, () => { fold_view.draw() });
-
+const fold_view = new FOLDView(fold_canvas, null);
+new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
+fold_view.setFOLD("../cp_data/fish.fold")

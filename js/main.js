@@ -12,7 +12,7 @@ async function loadCPFile(path) {
     return CP.parse(text);
 }
 
-let cp = await loadCPFile("../cp_data/fish.cp");
+let cp = await loadCPFile("../cp_data/face01.cp");
 const cp_canvas = document.getElementById('cp_canvas');
 const cp_view = new CPView(cp_canvas, cp);
 cp_view.draw();
@@ -41,4 +41,4 @@ const fold_canvas = document.getElementById('fold_canvas');
 const wrap_fold = document.getElementById('wrap_fold_canvas');
 const fold_view = new FOLDView(fold_canvas, null);
 new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
-fold_view.setFOLD("../cp_data/fish.fold")
+fold_view.setFOLD("../cp_data/face01.fold")

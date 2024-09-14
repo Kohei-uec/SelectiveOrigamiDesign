@@ -42,3 +42,13 @@ const wrap_fold = document.getElementById('wrap_fold_canvas');
 const fold_view = new FOLDView(fold_canvas, null);
 new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
 fold_view.setFOLD("../cp_data/face01.fold")
+
+
+//test
+const test_btn = document.getElementById('test_btn');
+test_btn.addEventListener('click', async () => {
+    const resp = await fetch('../cp_data/itto.cp');
+    const text = await resp.text();
+    cp.combine(text);
+    cp_view.draw();
+})

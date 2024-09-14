@@ -25,6 +25,17 @@ export class CP {
             this.initSquare();
         }
     }
+
+    combine(cp_txt) {
+        const lines = CP.txt2lines(cp_txt);
+        for (const l of lines) {
+            const v1_index = this.add_v(l[1], l[2]);
+            const v2_index = this.add_v(l[3], l[4]);
+            const e = this.add_e(v1_index, v2_index);
+            this.add_a(l[0], e);
+        }
+    }
+
     static line = {
         cut: 1,
         mountain: 2,
@@ -96,6 +107,7 @@ export class CP {
         }
     }
     //edges
+    //交差は考慮しない
     add_e(v1, v2) {
         const l = this.edges_vertices.findIndex((val) => (val[0] === v1 && val[1] === v2) || (val[0] === v2 && val[1] === v1));
         if (l === -1) {
@@ -107,7 +119,7 @@ export class CP {
     }
     add_a(type, edge) {
         if (edge < this.edges_assignment.length) {
-            this.edges_assignment[e] = type;
+            this.edges_assignment[edge] = type;
             return
         } else if (edge === this.edges_assignment.length) {
             this.edges_assignment.push(type);

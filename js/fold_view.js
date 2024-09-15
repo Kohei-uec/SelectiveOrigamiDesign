@@ -10,7 +10,7 @@ export class FOLDView {
         this.canvas = canvas;
         this.fold = fold;
 
-        [this.scene, this.renderer, this.camera] = this.init();
+        this.init();
     }
 
     //initialize three js
@@ -38,11 +38,7 @@ export class FOLDView {
             renderer.render(scene, camera);
         }
 
-        return [scene, renderer, camera];
-    }
-
-    draw() {
-
+        [this.scene, this.renderer, this.camera] = [scene, renderer, camera];
     }
 
     async setFOLD(path) {

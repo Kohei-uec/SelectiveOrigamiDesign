@@ -40,7 +40,7 @@ new CanvasResize(cp_canvas, wrap_cp, () => { cp_view.draw() });
 const fold_canvas = document.getElementById('fold_canvas');
 const wrap_fold = document.getElementById('wrap_fold_canvas');
 const fold_view = new FOLDView(fold_canvas, null);
-new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
+const fold_canvas_resize = new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
 fold_view.setFOLD("../cp_data/face01.fold")
 
 
@@ -51,4 +51,10 @@ test_btn.addEventListener('click', async () => {
     const text = await resp.text();
     cp.combine(text);
     cp_view.draw();
+
+
+    fold_view.init();
+    fold_view.setFOLD("../cp_data/fish.fold");
+    fold_view.setFOLD("../cp_data/face01_90.fold");
+    fold_canvas_resize.resize();
 })

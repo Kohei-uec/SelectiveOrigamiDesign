@@ -54,7 +54,9 @@ test_btn.addEventListener('click', async () => {
 
 
     fold_view.init();
-    fold_view.setFOLD("../cp_data/fish.fold");
-    fold_view.setFOLD("../cp_data/face01_90.fold");
+    fold_view.setFOLD("../cp_data/face_parts/eyeL.fold");
+    fold_view.setFOLD("../cp_data/face_parts/eyeR.fold");
+    fold_view.setFOLD("../cp_data/face_parts/top.fold");
+    fold_view.setFOLD("../cp_data/face_parts/mouse.fold");
     fold_canvas_resize.resize();
 })

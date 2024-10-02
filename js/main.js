@@ -1,4 +1,4 @@
-import { CanvasResize } from "./canvas.js";
+import { DOMResize } from "./resize.js";
 import { CP } from "./cp.js";
 import { CPView } from "./cp_view.js";
 import { FOLDView } from "./fold_view.js";
@@ -34,14 +34,12 @@ function loadFile(file) {
 
 
 const wrap_cp = document.getElementById('wrap_cp_canvas');
-new CanvasResize(cp_canvas, wrap_cp, () => { cp_view.draw() });
+new DOMResize(cp_canvas, wrap_cp, () => { cp_view.draw() });
 
 //fold
-const fold_canvas = document.getElementById('fold_canvas');
-const wrap_fold = document.getElementById('wrap_fold_canvas');
-const fold_view = new FOLDView(fold_canvas, null);
-const fold_canvas_resize = new CanvasResize(fold_canvas, wrap_fold, (l) => { fold_view.resize(l) });
-fold_view.setFOLD("../cp_data/face01.fold")
+const wrap_fold = document.getElementById('wrap_fold');
+const fold_view = new FOLDView(wrap_fold);
+fold_view.setFOLD(cp);
 
 
 //test

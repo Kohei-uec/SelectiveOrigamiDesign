@@ -1,5 +1,5 @@
-import { Vec2d } from "./vec2d.js";
-import { CP } from "./cp.js";
+import { Vec2d } from './vec2d.js';
+import { CP } from './cp.js';
 
 export class CPView {
     static width = 2;
@@ -53,11 +53,14 @@ export class CPView {
         // set view
         let canvas_c = new Vec2d(this.canvas.width / 2, this.canvas.height / 2);
         let dt = new Vec2d(this.preMouse);
-        dt.sub(canvas_c).sub(this.transVec).scale(this.preScale - this.scale).scale(1 / this.scale);
+        dt.sub(canvas_c)
+            .sub(this.transVec)
+            .scale(this.preScale - this.scale)
+            .scale(1 / this.scale);
         this.preScale = this.scale;
         this.transVec.add(dt);
         ctx.translate(this.transVec.x, this.transVec.y);
-        ctx.translate(canvas_c.x, canvas_c.y);//canvas中心を0,0に
+        ctx.translate(canvas_c.x, canvas_c.y); //canvas中心を0,0に
         ctx.scale(this.scale, this.scale);
 
         //lines
@@ -71,7 +74,7 @@ export class CPView {
 
         //vertices
         for (const ver of this.cp.vertices_coords) {
-            this.drawPoint(ver, CPView.rad / this.scale, 'rgb(0,0,0)')
+            this.drawPoint(ver, CPView.rad / this.scale, 'rgb(0,0,0)');
         }
 
         /*
@@ -127,12 +130,20 @@ export class CPView {
 
     onMouseMove(e) {
         let mousePos = this.getMousePosition(e);
-        if (mousePos.distance(this.pressedMouse) > CPView.move_rad) { this.moved = true; }
+        if (mousePos.distance(this.pressedMouse) > CPView.move_rad) {
+            this.moved = true;
+        }
 
         //move
-        if (this.inLongTouch) { this.preMouse = mousePos; return; }
+        if (this.inLongTouch) {
+            this.preMouse = mousePos;
+            return;
+        }
         // left(1),right(3)
-        if ((this.pressedMouseButton == 3) /*|| (this.controller.EditState.mode == Controller.MOVE && this.pressedMouseButton == 1)*/) {
+        if (
+            this.pressedMouseButton ==
+            3 /*|| (this.controller.EditState.mode == Controller.MOVE && this.pressedMouseButton == 1)*/
+        ) {
             this.transVec.add(mousePos).sub(this.preMouse);
             this.preMouse = mousePos;
             this.draw();
@@ -142,9 +153,11 @@ export class CPView {
 
     onMouseWheel(e) {
         this.preMouse = this.getMousePosition(e);
-        let delta = e.deltaY ? -(e.deltaY) : e.wheelDelta ? e.wheelDelta : -(e.detail);
-        this.scale += 0.05 * ((delta < 0) ? -1 : 1);
-        if (this.scale <= 0) { this.scale = 0.01; }
+        let delta = e.deltaY ? -e.deltaY : e.wheelDelta ? e.wheelDelta : -e.detail;
+        this.scale += 0.05 * (delta < 0 ? -1 : 1);
+        if (this.scale <= 0) {
+            this.scale = 0.01;
+        }
         this.draw();
         e.preventDefault();
     }
@@ -163,10 +176,16 @@ export class CPView {
     //touch
     ontouchmove(e) {
         let nowPos = this.getMousePosition(e.touches[0]);
-        if (this.preTouch.distance(this.pressedTouch) > CPView.move_rad) { this.moved = true; }
-        if (this.inLongTouch) { this.preTouch = nowPos; return; }
+        if (this.preTouch.distance(this.pressedTouch) > CPView.move_rad) {
+            this.moved = true;
+        }
+        if (this.inLongTouch) {
+            this.preTouch = nowPos;
+            return;
+        }
 
-        if (e.touches.length == 2) {//2本指で移動
+        if (e.touches.length == 2) {
+            //2本指で移動
             this.transVec.add(nowPos).sub(this.preTouch);
             this.preMouse = nowPos;
             this.preTouch = nowPos;
@@ -182,7 +201,7 @@ export class CPView {
                 pos1 = new Vec2d(pos1.x, pos1.y);
                 this.preDis = nowPos.distance(pos1);
             }
-        }/* else if (this.controller.EditState.mode == Controller.MOVE) {//mode MOVEで移動
+        } /* else if (this.controller.EditState.mode == Controller.MOVE) {//mode MOVEで移動
             if (this.preTouch2) {
                 if (this.preTouch.distance(nowPos) > this.preTouch2.distance(nowPos)) {
                     this.transVec.add(nowPos).sub(this.preTouch2);
@@ -199,7 +218,11 @@ export class CPView {
         e.preventDefault();
     }
     ontouchstart(e) {
-        if (e.touches.length >= 2) { return; } else { this.preTouch2 = false; }
+        if (e.touches.length >= 2) {
+            return;
+        } else {
+            this.preTouch2 = false;
+        }
         e.preventDefault();
         let mousePos = this.getMousePosition(e.touches[0]);
         this.preMouse = mousePos;
@@ -218,7 +241,8 @@ export class CPView {
             let fun = this.moved ? this.controller.endListener : this.controller.clickListener;
             fun(pos);
             */
-        } if (this.inLongTouch && e.touches.length == 0) {
+        }
+        if (this.inLongTouch && e.touches.length == 0) {
             //this.controller.shortcutdo(this.preTouch, this.pressedMouse, true);
         }
         this.end();
@@ -231,7 +255,7 @@ export class CPView {
         let matrix = [
             [storedTransform.a, storedTransform.c, storedTransform.e],
             [storedTransform.b, storedTransform.d, storedTransform.f],
-            [0, 0, 1]
+            [0, 0, 1],
         ];
         let i = math.inv(matrix);
         let j = [Pos.x, Pos.y, 1];
@@ -251,7 +275,7 @@ export class CPView {
                 clearInterval(this.interval_id);
                 return;
             }
-            console.log('long!')
+            console.log('long!');
             this.inLongTouch = true;
             let pos = this.origin_vec(mousePos);
             clearInterval(this.interval_id);
@@ -277,11 +301,19 @@ export class CPView {
     static lineType2color(type) {
         let color;
         switch (type) {
-            case CP.line.cut: color = 'rgb(0,0,0)'; break;
-            case CP.line.mountain: color = 'rgb(255,0,0)'; break;
-            case CP.line.valley: color = 'rgb(0,0,255)'; break;
-            default: color = 'rgb(150,200,255)'; break;
+            case CP.line.cut:
+                color = 'rgb(0,0,0)';
+                break;
+            case CP.line.mountain:
+                color = 'rgb(255,0,0)';
+                break;
+            case CP.line.valley:
+                color = 'rgb(0,0,255)';
+                break;
+            default:
+                color = 'rgb(150,200,255)';
+                break;
         }
-        return color
+        return color;
     }
 }

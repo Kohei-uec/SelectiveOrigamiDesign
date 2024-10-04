@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>ORIGAMI FM</title>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
         <script src="https://kit.fontawesome.com/10f2f78404.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./style.css" />
 
         <script type="importmap">
             {
-              "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/",
-                "rabbit-ear": "https://rabbit-ear.github.io/rabbit-ear/src/index.js"
-              }
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/",
+                    "rabbit-ear": "https://rabbit-ear.github.io/rabbit-ear/src/index.js"
+                }
             }
-          </script>
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.1/math.js"></script>
         <script type="module" src="./js/main.js"></script>
         <script type="module" src="./js/navbar.js"></script>
-
     </head>
     <body>
         <nav class="navbar is-dark">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/index.html">
-                    ORIGAMI FACE MAKER
-                </a>
-                <div class="navbar-burger js-burger"
-                    data-target="navbarExampleTransparentExample">
+                <a class="navbar-item" href="/index.html"> ORIGAMI FACE MAKER </a>
+                <div class="navbar-burger js-burger" data-target="navbarExampleTransparentExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -43,57 +39,60 @@
 
             <div id="navbarExampleTransparentExample" class="navbar-menu">
                 <div class="navbar-start">
-
-                    <div class="navbar-item has-dropdown  is-hoverable">
-                        <div class="navbar-link"> File </div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link">File</div>
                         <div class="navbar-dropdown is-boxed">
                             <a class="navbar-item"> Load from Browser </a>
                             <a class="navbar-item"> Import file </a>
-                            <hr class="navbar-divider">
+                            <hr class="navbar-divider" />
 
                             <a class="navbar-item"> Save in Browser </a>
                             <a class="navbar-item">Download</a>
-                            <hr class="navbar-divider">
+                            <hr class="navbar-divider" />
 
                             <a class="navbar-item">Download CP</a>
-                            <hr class="navbar-divider">
+                            <hr class="navbar-divider" />
 
                             <a class="navbar-item">Download Folded Figure</a>
                         </div>
                     </div>
 
-                    <div class="navbar-item has-dropdown  is-hoverable">
-                        <div class="navbar-link"> Example </div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-link">Example</div>
                         <div class="navbar-dropdown is-boxed">
                             <a class="navbar-item"> Example1 </a>
                             <a class="navbar-item"> Example2 </a>
-                            <hr class="navbar-divider">
+                            <hr class="navbar-divider" />
 
                             <a class="navbar-item"> Example3 </a>
                         </div>
                     </div>
 
                     <a class="navbar-item" href="/test/"> test </a>
-
                 </div>
 
-                <div class="navbar-end" style="display: none;">
+                <div class="navbar-end" style="display: none">
                     <div class="navbar-item">
                         <div class="field is-grouped">
-
-                            <p class="control">
+                            <div class="control">
                                 <a class="button is-primary" href="#">
                                     <span class="icon">
                                         <i class="fas fa-download"></i>
                                     </span>
                                     <span>Download</span>
                                 </a>
-                            </p>
+                            </div>
 
-                            <p class="control">
+                            <div class="control">
                                 <div class="file">
                                     <label class="file-label">
-                                        <input id="test_file" class="file-input" type="file" name="resume" accept=".cp" />
+                                        <input
+                                            id="test_file"
+                                            class="file-input"
+                                            type="file"
+                                            name="resume"
+                                            accept=".cp"
+                                        />
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -102,12 +101,18 @@
                                         </span>
                                     </label>
                                 </div>
-                            </p>
+                            </div>
 
-                            <p class="control">
+                            <div class="control">
                                 <div class="file">
                                     <label class="file-label">
-                                        <input id="fold_file" class="file-input" type="file" name="resume" accept=".fold" />
+                                        <input
+                                            id="fold_file"
+                                            class="file-input"
+                                            type="file"
+                                            name="resume"
+                                            accept=".fold"
+                                        />
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -116,10 +121,8 @@
                                         </span>
                                     </label>
                                 </div>
-                            </p>
-
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -139,7 +142,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>正方形</option>
+                                    <option value="default.cp">正方形</option>
                                 </select>
                             </div>
                         </div>
@@ -149,7 +152,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select>
-                                    <option>魚の基本形</option>
+                                    <option value="default.cp">魚の基本形</option>
                                 </select>
                             </div>
                         </div>
@@ -159,9 +162,8 @@
                             <span class="tree-nest"></span>
                             <span class="tree-nest last"></span>
                             <div class="select">
-                                <select>
-                                    <option>右目のパーツ</option>
-                                    <option>With options</option>
+                                <select name="right">
+                                    <option value="default.cp">右目のパーツ</option>
                                 </select>
                             </div>
                         </div>
@@ -170,9 +172,8 @@
                             <span class="tree-nest"></span>
                             <span class="tree-nest last"></span>
                             <div class="select">
-                                <select>
-                                    <option>左目のパーツ</option>
-                                    <option>With options</option>
+                                <select name="left">
+                                    <option value="default.cp">左目のパーツ</option>
                                 </select>
                             </div>
                         </div>
@@ -181,9 +182,8 @@
                             <span class="tree-nest"></span>
                             <span class="tree-nest last"></span>
                             <div class="select">
-                                <select>
-                                    <option>口のパーツ</option>
-                                    <option>With options</option>
+                                <select name="bottom">
+                                    <option value="default.cp">口のパーツ</option>
                                 </select>
                             </div>
                         </div>
@@ -192,19 +192,18 @@
                             <span class="tree-nest"></span>
                             <span class="tree-nest last"></span>
                             <div class="select">
-                                <select>
-                                    <option>鼻のパーツ</option>
-                                    <option>With options</option>
+                                <select name="top">
+                                    <option value="default.cp">鼻のパーツ</option>
                                 </select>
                             </div>
                         </div>
 
                         <div>
-                            <button class="button" id="test_btn">test</button>
+                            <button class="button" id="test_btn">紙の重なりを変える</button>
                         </div>
                     </div>
 
-                    <div class="field has-addons" style="display: none;">
+                    <div class="field has-addons" style="display: none">
                         <p class="control">
                             <span class="select">
                                 <select>
@@ -218,7 +217,7 @@
                         </p>
                     </div>
 
-                    <div class="file has-name" style="display: none;">
+                    <div class="file has-name" style="display: none">
                         <label class="file-label">
                             <input class="file-input" type="file" name="resume" accept=".json" />
                             <span class="file-cta">
@@ -231,18 +230,18 @@
                         </label>
                     </div>
 
-                    <div class="field has-addons" style="display: none;">
+                    <div class="field has-addons" style="display: none">
                         <p class="control">
-                            <input class="input" type="text" placeholder="project name">
+                            <input class="input" type="text" placeholder="project name" />
                         </p>
                         <p class="control">
                             <button class="button">Save in Browser</button>
                         </p>
                     </div>
 
-                    <div class="field has-addons" style="display: none;">
+                    <div class="field has-addons" style="display: none">
                         <p class="control">
-                            <input class="input" type="text" placeholder="file name">
+                            <input class="input" type="text" placeholder="file name" />
                         </p>
                         <p class="control">
                             <span class="select">
@@ -255,7 +254,6 @@
                             <button class="button is-primary">Download</button>
                         </p>
                     </div>
-
                 </section>
 
                 <section class="column is-one-third section content">
@@ -269,9 +267,9 @@
                         <canvas id="cp_canvas"></canvas>
                     </div>
 
-                    <div class="field has-addons" style="display: none;">
+                    <div class="field has-addons" style="display: none">
                         <p class="control">
-                            <input class="input" type="text" placeholder="file name">
+                            <input class="input" type="text" placeholder="file name" />
                         </p>
                         <p class="control">
                             <span class="select">
@@ -286,7 +284,6 @@
                             <button class="button is-primary">保存</button>
                         </p>
                     </div>
-
                 </section>
 
                 <section class="column is-one-third section content">
@@ -300,9 +297,9 @@
                         <!-- <canvas id="fold_canvas"></canvas> -->
                     </div>
 
-                    <div class="field has-addons" style="display: none;">
+                    <div class="field has-addons" style="display: none">
                         <p class="control">
-                            <input class="input" type="text" placeholder="file name">
+                            <input class="input" type="text" placeholder="file name" />
                         </p>
                         <p class="control">
                             <span class="select">
@@ -316,39 +313,40 @@
                             <button class="button is-primary">保存</button>
                         </p>
                     </div>
-
                 </section>
             </div>
-
         </main>
 
         <footer class="footer">
             <div class="content has-text-centered">
+                <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita 2024.</p>
                 <p>
-                    <strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita 2024.
+                    with <strong>FOLD</strong> file format by Erik Demaine, Jason Ku, Robert Lang -
+                    <a href="https://github.com/edemaine/FOLD/">https://github.com/edemaine/FOLD/</a>. (licensed
+                    <a href="https://opensource.org/license/mit">MIT</a>)
                 </p>
                 <p>
-                    with <strong>FOLD</strong> file format by Erik Demaine, Jason Ku, Robert Lang - <a href="https://github.com/edemaine/FOLD/">https://github.com/edemaine/FOLD/</a>.
-                    (licensed <a href="https://opensource.org/license/mit">MIT</a>)
+                    with <strong>Rabbit Ear</strong> by Kraft -
+                    <a href="https://rabbitear.org/">https://rabbitear.org/</a>. (licensed GNU GPLv3)
                 </p>
                 <p>
-                    with <strong>Rabbit Ear</strong> by Kraft - <a href="https://rabbitear.org/">https://rabbitear.org/</a>.
-                    (licensed GNU GPLv3)
+                    with <strong>three.js</strong> by three.js authors -
+                    <a href="https://threejs.org/">https://threejs.org/</a>. (licensed
+                    <a href="https://opensource.org/license/mit">MIT</a>)
                 </p>
                 <p>
-                    with <strong>three.js</strong> by three.js authors - <a href="https://threejs.org/">https://threejs.org/</a>.
-                    (licensed <a href="https://opensource.org/license/mit">MIT</a>)
+                    with <strong>Font Awesome</strong> by Dave Gandy -
+                    <a href="http://fontawesome.io">http://fontawesome.io</a>. (<a
+                        href="https://fontawesome.com/v4/license/"
+                        >license</a
+                    >)
                 </p>
                 <p>
-                    with <strong>Font Awesome</strong> by Dave Gandy - <a href="http://fontawesome.io">http://fontawesome.io</a>.
-                    (<a href="https://fontawesome.com/v4/license/">license</a>)
-                </p>
-                <p>
-                    with <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a> - <a href="https://bulma.io/">https://bulma.io/</a>.
-                    (licensed <a href="https://opensource.org/license/mit">MIT</a>)
+                    with <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a> -
+                    <a href="https://bulma.io/">https://bulma.io/</a>. (licensed
+                    <a href="https://opensource.org/license/mit">MIT</a>)
                 </p>
             </div>
         </footer>
-
     </body>
 </html>

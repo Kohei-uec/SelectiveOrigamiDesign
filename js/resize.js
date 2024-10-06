@@ -1,6 +1,6 @@
-export class CanvasResize {
-    constructor(canvas, wrap, resizeListener) {
-        this.dom = canvas;
+export class DOMResize {
+    constructor(dom, wrap, resizeListener) {
+        this.dom = dom;
         this.wrap = wrap;
         this.resizeListener = resizeListener;
         window.addEventListener('resize', () => { this.resize() });
@@ -12,7 +12,7 @@ export class CanvasResize {
         this.dom.height = l;
         this.dom.width = l;
         if (this.resizeListener) {
-            this.resizeListener();
+            this.resizeListener(l);
         }
     }
 }

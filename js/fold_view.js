@@ -44,7 +44,16 @@ export class FOLDView {
 
         //display
         this.svg.removeChildren();
-        //this.svg.padding(10).strokeWidth(0.01).strokeLinecap('round').rotate(180);
         this.svg.origami(folded);
+        setSVGPadding(this.svg);
     }
+}
+
+function setSVGPadding(svg, padding = 10) {
+    const viewBox = svg.getAttribute('viewBox').split(' ').map(Number);
+    viewBox[0] -= padding;
+    viewBox[1] -= padding;
+    viewBox[2] += 2 * padding;
+    viewBox[3] += 2 * padding;
+    svg.setAttribute('viewBox', viewBox.join(' '));
 }

@@ -162,8 +162,18 @@
                             <span class="tree-nest"></span>
                             <span class="tree-nest last"></span>
                             <div class="select">
+                                <select name="top">
+                                    <option value="default.cp">上パーツ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tree-node">
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest"></span>
+                            <span class="tree-nest last"></span>
+                            <div class="select">
                                 <select name="right">
-                                    <option value="default.cp">右目のパーツ</option>
+                                    <option value="default.cp">右目</option>
                                 </select>
                             </div>
                         </div>
@@ -173,7 +183,7 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select name="left">
-                                    <option value="default.cp">左目のパーツ</option>
+                                    <option value="default.cp">左目</option>
                                 </select>
                             </div>
                         </div>
@@ -183,23 +193,19 @@
                             <span class="tree-nest last"></span>
                             <div class="select">
                                 <select name="bottom">
-                                    <option value="default.cp">口のパーツ</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select name="top">
-                                    <option value="default.cp">鼻のパーツ</option>
+                                    <option value="default.cp">下パーツ</option>
                                 </select>
                             </div>
                         </div>
 
+                        <br />
                         <div>
-                            <button class="button" id="test_btn">紙の重なりを変える</button>
+                            <label>紙の重なり順</label>
+                            <button class="button" id="order_btn">next</button>
+                            <br />
+                            色
+                            <input type="color" class="input" id="front_color" value="#353030" />
+                            <input type="color" class="input" id="back_color" value="#fef8f6" />
                         </div>
                     </div>
 
@@ -329,7 +335,7 @@
                     with <strong>Rabbit Ear</strong> by Kraft -
                     <a href="https://rabbitear.org/">https://rabbitear.org/</a>. (licensed GNU GPLv3)
                 </p>
-                <p>
+                <p style="display: none">
                     with <strong>three.js</strong> by three.js authors -
                     <a href="https://threejs.org/">https://threejs.org/</a>. (licensed
                     <a href="https://opensource.org/license/mit">MIT</a>)

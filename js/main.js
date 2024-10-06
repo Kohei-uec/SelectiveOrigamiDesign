@@ -4,7 +4,7 @@ import { CPView } from './cp_view.js';
 import { FOLDView } from './fold_view.js';
 import * as file from './file.js';
 import { Face } from './face.js';
-import { PartsSelect } from './gui.js';
+import { FaceColor, PartsSelect } from './gui.js';
 
 let cp = await file.loadCP('../cp_data/face01.cp');
 const cp_canvas = document.getElementById('cp_canvas');
@@ -39,10 +39,4 @@ const face = new Face();
 
 //gui
 const selectGUI = new PartsSelect(face, cp_view, fold_view);
-
-//test
-const test_btn = document.getElementById('test_btn');
-test_btn.addEventListener('click', async () => {
-    selectGUI.next();
-    return;
-});
+const faceColor = new FaceColor();

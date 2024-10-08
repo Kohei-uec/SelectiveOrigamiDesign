@@ -6,7 +6,7 @@ export class DOMResize {
         window.addEventListener('resize', () => {
             this.resize(resizeListener);
         });
-        this.resize(); //cpのbuildが非同期なため初期化のリサイズはリスナーなしで実行
+        this.resize(resizeListener);
     }
 
     resize(resizeListener) {

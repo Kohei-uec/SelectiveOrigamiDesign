@@ -3,8 +3,9 @@ import { CPView } from './cp_view.js';
 import { FOLDView } from './fold_view.js';
 import { Face } from './face.js';
 import { FaceColor, PartsSelect } from './gui.js';
+import { CP } from './cp.js';
 
-let cp;
+let cp = new CP();
 const cp_canvas = document.getElementById('cp_canvas');
 const cp_view = new CPView(cp_canvas, cp);
 

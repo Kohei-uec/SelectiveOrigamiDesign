@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
         <script src="https://kit.fontawesome.com/10f2f78404.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./layout.css" />
 
         <script type="importmap">
             {
@@ -129,197 +130,207 @@
         </nav>
 
         <main>
-            <div class="columns is-desktop">
-                <section class="column is-one-third section content">
-                    <div class="level">
-                        <div class="level-item">
-                            <h2>構造</h2>
+            <div class="wrap-3tabs">
+                <div class="wrap-tab">
+                    <input id="TAB-P" type="checkbox" class="tab-switch" checked="checked" disabled />
+                    <label class="tab-label" for="TAB-P">
+                        <div class="tab-title">
+                            <h2><i class="fa-solid fa-diagram-project"></i> Project</h2>
                         </div>
-                    </div>
+                    </label>
 
-                    <div class="box">
-                        <div class="tree-node">
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select>
-                                    <option value="default.cp">正方形</option>
-                                </select>
+                    <section class="tab-content">
+                        <div class="wrap-tree">
+                            <div class="tree-node">
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select>
+                                        <option value="default.cp">正方形</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select>
-                                    <option value="default.cp">魚の基本形</option>
-                                </select>
+                            <div class="tree-node">
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select>
+                                        <option value="default.cp">魚の基本形</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select name="top">
-                                    <option value="default.cp">上パーツ</option>
-                                </select>
+                            <div class="tree-node">
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select name="top">
+                                        <option value="default.cp">上パーツ</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select name="right">
-                                    <option value="default.cp">右目</option>
-                                </select>
+                            <div class="tree-node">
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select name="right">
+                                        <option value="default.cp">右目</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select name="left">
-                                    <option value="default.cp">左目</option>
-                                </select>
+                            <div class="tree-node">
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select name="left">
+                                        <option value="default.cp">左目</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tree-node">
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest"></span>
-                            <span class="tree-nest last"></span>
-                            <div class="select">
-                                <select name="bottom">
-                                    <option value="default.cp">下パーツ</option>
-                                </select>
+                            <div class="tree-node">
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest"></span>
+                                <span class="tree-nest last"></span>
+                                <div class="select">
+                                    <select name="bottom">
+                                        <option value="default.cp">下パーツ</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <br />
-                        <div>
-                            <label>紙の重なり順</label>
-                            <button class="button" id="order_btn">next</button>
                             <br />
-                            色
-                            <input type="color" class="input" id="front_color" value="#353030" />
-                            <input type="color" class="input" id="back_color" value="#fef8f6" />
+                            <div>
+                                <label>紙の重なり順</label>
+                                <button class="button" id="order_btn">next</button>
+                                <br />
+                                色
+                                <input type="color" class="input" id="front_color" value="#353030" />
+                                <input type="color" class="input" id="back_color" value="#fef8f6" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field has-addons" style="display: none">
-                        <p class="control">
-                            <span class="select">
-                                <select>
-                                    <option>project name</option>
-                                    <option>project name</option>
-                                </select>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <button class="button">Load from Browser</button>
-                        </p>
-                    </div>
-
-                    <div class="file has-name" style="display: none">
-                        <label class="file-label">
-                            <input class="file-input" type="file" name="resume" accept=".json" />
-                            <span class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
+                        <div class="field has-addons" style="display: none">
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>project name</option>
+                                        <option>project name</option>
+                                    </select>
                                 </span>
-                                <span class="file-label"> Choose a file… </span>
-                            </span>
-                            <span class="file-name"> ProjectFile.json </span>
+                            </p>
+                            <p class="control">
+                                <button class="button">Load from Browser</button>
+                            </p>
+                        </div>
+
+                        <div class="file has-name" style="display: none">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="resume" accept=".json" />
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label"> Choose a file… </span>
+                                </span>
+                                <span class="file-name"> ProjectFile.json </span>
+                            </label>
+                        </div>
+
+                        <div class="field has-addons" style="display: none">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="project name" />
+                            </p>
+                            <p class="control">
+                                <button class="button">Save in Browser</button>
+                            </p>
+                        </div>
+
+                        <div class="field has-addons" style="display: none">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="file name" />
+                            </p>
+                            <p class="control">
+                                <span class="select">
+                                    <select disabled>
+                                        <option>.json</option>
+                                    </select>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary">Download</button>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="wrap-2tabs">
+                    <div class="wrap-tab">
+                        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
+                        <label class="tab-label" for="TAB-01">
+                            <div class="tab-title">
+                                <h2><i class="fa-solid fa-vector-square"></i> Crease Patten</h2>
+                            </div>
                         </label>
+                        <section class="tab-content" id="cp_tab">
+                            <div class="wrap-canvas" id="wrap_cp_canvas">
+                                <canvas id="cp_canvas"></canvas>
+                            </div>
+
+                            <div class="field has-addons" style="display: none">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="file name" />
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>.cp</option>
+                                            <option>.svg</option>
+                                            <option>.png</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <button class="button is-primary">保存</button>
+                                </p>
+                            </div>
+                        </section>
+                        <div class="tab-dummy-content"></div>
                     </div>
 
-                    <div class="field has-addons" style="display: none">
-                        <p class="control">
-                            <input class="input" type="text" placeholder="project name" />
-                        </p>
-                        <p class="control">
-                            <button class="button">Save in Browser</button>
-                        </p>
-                    </div>
+                    <div class="wrap-tab">
+                        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
+                        <label class="tab-label" for="TAB-02">
+                            <div class="tab-title">
+                                <h2><i class="fa-solid fa-map"></i> Fold</h2>
+                            </div>
+                        </label>
+                        <section class="tab-content" id="fold_tab">
+                            <div class="wrap-canvas" id="wrap_fold">
+                                <!-- <canvas id="fold_canvas"></canvas> -->
+                            </div>
 
-                    <div class="field has-addons" style="display: none">
-                        <p class="control">
-                            <input class="input" type="text" placeholder="file name" />
-                        </p>
-                        <p class="control">
-                            <span class="select">
-                                <select disabled>
-                                    <option>.json</option>
-                                </select>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <button class="button is-primary">Download</button>
-                        </p>
+                            <div class="field has-addons" style="display: none">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="file name" />
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>.fold</option>
+                                            <option>.png</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <button class="button is-primary">保存</button>
+                                </p>
+                            </div>
+                        </section>
                     </div>
-                </section>
-
-                <section class="column is-one-third section content">
-                    <div class="level">
-                        <div class="level-item">
-                            <h2>展開図</h2>
-                        </div>
-                    </div>
-
-                    <div class="wrap-canvas box" id="wrap_cp_canvas">
-                        <canvas id="cp_canvas"></canvas>
-                    </div>
-
-                    <div class="field has-addons" style="display: none">
-                        <p class="control">
-                            <input class="input" type="text" placeholder="file name" />
-                        </p>
-                        <p class="control">
-                            <span class="select">
-                                <select>
-                                    <option>.cp</option>
-                                    <option>.svg</option>
-                                    <option>.png</option>
-                                </select>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <button class="button is-primary">保存</button>
-                        </p>
-                    </div>
-                </section>
-
-                <section class="column is-one-third section content">
-                    <div class="level">
-                        <div class="level-item">
-                            <h2>折り畳み</h2>
-                        </div>
-                    </div>
-
-                    <div class="wrap-canvas box" id="wrap_fold">
-                        <!-- <canvas id="fold_canvas"></canvas> -->
-                    </div>
-
-                    <div class="field has-addons" style="display: none">
-                        <p class="control">
-                            <input class="input" type="text" placeholder="file name" />
-                        </p>
-                        <p class="control">
-                            <span class="select">
-                                <select>
-                                    <option>.fold</option>
-                                    <option>.png</option>
-                                </select>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <button class="button is-primary">保存</button>
-                        </p>
-                    </div>
-                </section>
+                </div>
             </div>
         </main>
 

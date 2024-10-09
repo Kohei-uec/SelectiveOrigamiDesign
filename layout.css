@@ -62,8 +62,7 @@ canvas {
     margin: 0;
     padding: 0;
 }
-
-@media screen and (max-width: 480px) {
+@media screen and (width <= 900px) {
     /* 480px以下に適用されるCSS（スマホ用） */
     :root {
         --side-margin: 0.5em;
@@ -71,14 +70,6 @@ canvas {
     }
     main {
         margin: 0 var(--side-margin);
-    }
-    .wrap-tab {
-        border: none;
-    }
-    .wrap-3tabs {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
     }
     .wrap-2tabs {
         display: flex;
@@ -88,11 +79,12 @@ canvas {
     }
     .wrap-2tabs .wrap-tab {
         width: auto;
+        border: none;
     }
     .tab-dummy-content {
         display: block;
         width: 1px;
-        height: calc(100vw - 2 * var(--side-margin));
+        height: calc((100vw - 2 * var(--side-margin)) * 2 / 3);
     }
     .wrap-2tabs > .wrap-tab > .tab-content {
         position: absolute;
@@ -147,5 +139,23 @@ canvas {
     .tab-switch:checked + .tab-label + .tab-content {
         height: auto;
         opacity: 1;
+    }
+}
+@media screen and (width <= 600px) {
+    .wrap-3tabs {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrap-2tabs {
+        width: 100%;
+    }
+    .wrap-tab {
+        border: none;
+    }
+    .tab-dummy-content {
+        display: block;
+        width: 1px;
+        height: max(calc(100vw - 2 * var(--side-margin)), 250px);
     }
 }

@@ -132,7 +132,7 @@
         <main>
             <div class="wrap-3tabs">
                 <div class="wrap-tab">
-                    <input id="TAB-P" type="checkbox" name="TAB" class="tab-switch" checked="checked" disabled />
+                    <input id="TAB-P" type="checkbox" class="tab-switch" checked="checked" disabled />
                     <label class="tab-label" for="TAB-P">
                         <div class="tab-title">
                             <h2><i class="fa-solid fa-diagram-project"></i> Project</h2>
@@ -267,64 +267,69 @@
                 </div>
 
                 <div class="wrap-2tabs">
-                    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
-                    <label class="tab-label" for="TAB-01">
-                        <div class="tab-title">
-                            <h2><i class="fa-regular fa-square"></i> Crease Patten</h2>
-                        </div>
-                    </label>
-                    <section class="tab-content" id="cp_tab">
-                        <div class="wrap-canvas" id="wrap_cp_canvas">
-                            <canvas id="cp_canvas"></canvas>
-                        </div>
+                    <div class="wrap-tab">
+                        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
+                        <label class="tab-label" for="TAB-01">
+                            <div class="tab-title">
+                                <h2><i class="fa-regular fa-square"></i> Crease Patten</h2>
+                            </div>
+                        </label>
+                        <section class="tab-content" id="cp_tab">
+                            <div class="wrap-canvas" id="wrap_cp_canvas">
+                                <canvas id="cp_canvas"></canvas>
+                            </div>
 
-                        <div class="field has-addons" style="display: none">
-                            <p class="control">
-                                <input class="input" type="text" placeholder="file name" />
-                            </p>
-                            <p class="control">
-                                <span class="select">
-                                    <select>
-                                        <option>.cp</option>
-                                        <option>.svg</option>
-                                        <option>.png</option>
-                                    </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <button class="button is-primary">保存</button>
-                            </p>
-                        </div>
-                    </section>
+                            <div class="field has-addons" style="display: none">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="file name" />
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>.cp</option>
+                                            <option>.svg</option>
+                                            <option>.png</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <button class="button is-primary">保存</button>
+                                </p>
+                            </div>
+                        </section>
+                        <div class="tab-dummy-content"></div>
+                    </div>
 
-                    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
-                    <label class="tab-label" for="TAB-02">
-                        <div class="tab-title">
-                            <h2><i class="fa-regular fa-note-sticky"></i> Fold</h2>
-                        </div>
-                    </label>
-                    <section class="tab-content" id="fold_tab">
-                        <div class="wrap-canvas" id="wrap_fold">
-                            <!-- <canvas id="fold_canvas"></canvas> -->
-                        </div>
+                    <div class="wrap-tab">
+                        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
+                        <label class="tab-label" for="TAB-02">
+                            <div class="tab-title">
+                                <h2><i class="fa-regular fa-note-sticky"></i> Fold</h2>
+                            </div>
+                        </label>
+                        <section class="tab-content" id="fold_tab">
+                            <div class="wrap-canvas" id="wrap_fold">
+                                <!-- <canvas id="fold_canvas"></canvas> -->
+                            </div>
 
-                        <div class="field has-addons" style="display: none">
-                            <p class="control">
-                                <input class="input" type="text" placeholder="file name" />
-                            </p>
-                            <p class="control">
-                                <span class="select">
-                                    <select>
-                                        <option>.fold</option>
-                                        <option>.png</option>
-                                    </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <button class="button is-primary">保存</button>
-                            </p>
-                        </div>
-                    </section>
+                            <div class="field has-addons" style="display: none">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="file name" />
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select>
+                                            <option>.fold</option>
+                                            <option>.png</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <button class="button is-primary">保存</button>
+                                </p>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </main>

@@ -1,7 +1,14 @@
 import { Face } from './face.js';
 import { list } from '../cp_data/list.js';
 
-export class PartsSelect {
+export class GUI {
+    constructor(face, cp_view, fold_view) {
+        this.partsSelect = new PartsSelect(face, cp_view, fold_view);
+        this.faceColor = new FaceColor();
+        this.faceOrder = new FaceOrders(face, fold_view);
+    }
+}
+class PartsSelect {
     constructor(face, cp_view, fold_view, names = Face.order) {
         //select and option
         for (const name of names) {
@@ -14,12 +21,6 @@ export class PartsSelect {
 
             this.createOptionsList(this[name], name);
         }
-
-        //face order
-        const btn = document.getElementById('order_btn');
-        btn.addEventListener('click', async () => {
-            this.next();
-        });
 
         this.face = face;
         this.cp_view = cp_view;
@@ -37,11 +38,6 @@ export class PartsSelect {
         this.fold_view.setFOLD(cp, this.i);
     }
 
-    next() {
-        this.i++;
-        this.setView();
-    }
-
     createOptionsList(select, name) {
         if (name === 'left' || name === 'right') {
             name = 'side';
@@ -55,7 +51,75 @@ export class PartsSelect {
     }
 }
 
-export class FaceColor {
+class FaceOrders {
+    constructor(face, fold_view, id = 'wrap_order') {
+        this.face = face;
+        this.fold_view = fold_view;
+        this.wrap = document.getElementById(id);
+
+        //set event listener
+        fold_view.onBuild = () => {
+            this.setUI();
+        };
+
+        //test
+        const btn = document.getElementById('order_btn');
+        btn.addEventListener('click', async () => {
+            let txt = document.getElementById('test_txt').value;
+            txt = `[${txt}]`;
+            txt = JSON.parse(txt);
+            fold_view.setOrder(...txt); // edit
+        });
+    }
+    setView() {
+        const orders = document.getElementsByName('order');
+        let n = 0;
+        orders.forEach((order, i) => {
+            n += 2 ** i * (order.checked ? 1 : 0);
+        });
+        this.fold_view.setOrderNum(n);
+    }
+
+    setUI() {
+        //get order pattern
+        const n = this.fold_view.getOrderNum();
+        if (n <= 1) {
+            this.wrap.innerHTML = '<button class="button" disabled>no choice</p>'; //init text
+            return;
+        }
+        //add elm
+        this.wrap.innerHTML = ''; //remove all children, add text
+        for (let i = 0; i < Math.log2(n); i++) {
+            const elm = this.createButton(i);
+            this.wrap.appendChild(elm);
+
+            elm.addEventListener('change', () => {
+                this.setView();
+            });
+        }
+    }
+    createButton(i) {
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.name = 'order';
+        input.classList.add('order-reverse');
+        input.id = 'btn' + i;
+        input.style.display = 'none';
+
+        const label = document.createElement('label');
+        label.htmlFor = input.id;
+        const btn = document.createElement('div');
+        btn.classList.add('button', 'order-btn');
+        btn.innerHTML = '<i class="fa-solid fa-shuffle"></i>';
+
+        label.appendChild(btn);
+
+        const wrap = document.createElement('div');
+        wrap.append(input, label);
+        return wrap;
+    }
+}
+class FaceColor {
     constructor(fid = 'front_color', bid = 'back_color') {
         this.inputs = [document.getElementById(fid), document.getElementById(bid)];
         this.inputs.forEach((elm) => {

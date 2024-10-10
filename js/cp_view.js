@@ -140,10 +140,8 @@ export class CPView {
             return;
         }
         // left(1),right(3)
-        if (
-            this.pressedMouseButton ==
-            3 /*|| (this.controller.EditState.mode == Controller.MOVE && this.pressedMouseButton == 1)*/
-        ) {
+        /*|| (this.controller.EditState.mode == Controller.MOVE && this.pressedMouseButton == 1)*/
+        if (this.pressedMouseButton == 3 || this.pressedMouseButton == 1) {
             this.transVec.add(mousePos).sub(this.preMouse);
             this.preMouse = mousePos;
             this.draw();

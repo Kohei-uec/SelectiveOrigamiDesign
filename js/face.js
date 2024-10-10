@@ -14,7 +14,7 @@ export class Face {
     async buildCP() {
         this.cp = new CP();
         for (const part of Face.order) {
-            let path = document.location.href + '/cp_data/';
+            let path = document.location.origin + '/cp_data/';
             if (part === 'left' || part === 'right') {
                 path += 'side/';
             } else {

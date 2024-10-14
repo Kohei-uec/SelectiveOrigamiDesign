@@ -28,6 +28,16 @@ svg polygon {
     transition: 0.5s;
 }
 
+/* tree */
+.wrap-ui {
+    /* border: solid 1px #000; */
+    padding: 0.2em 0.5rem;
+}
+.wrap-ui:not(:last-of-type) {
+    border-bottom: solid 1px gray;
+    margin-bottom: 0.3em;
+}
+
 .tree-node {
     display: flex;
     width: 100%;

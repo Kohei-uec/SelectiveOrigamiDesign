@@ -4,6 +4,7 @@ import { FOLDView } from './fold_view.js';
 import { Face } from './face.js';
 import { CP } from './cp.js';
 import { GUI } from './gui.js';
+import * as modal from './modal.js';
 
 let cp = new CP();
 const cp_canvas = document.getElementById('cp_canvas');

@@ -61,15 +61,6 @@ class FaceOrders {
         fold_view.onBuild = () => {
             this.setUI();
         };
-
-        //test
-        const btn = document.getElementById('order_btn');
-        btn.addEventListener('click', async () => {
-            let txt = document.getElementById('test_txt').value;
-            txt = `[${txt}]`;
-            txt = JSON.parse(txt);
-            fold_view.setOrder(...txt); // edit
-        });
     }
     setView() {
         const orders = document.getElementsByName('order');

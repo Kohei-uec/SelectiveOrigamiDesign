@@ -41,12 +41,6 @@ main {
     display: none;
 }
 
-/* tree */
-.wrap-tree {
-    /* border: solid 1px #000; */
-
-    padding: 0.5rem;
-}
 .wrap-canvas {
     box-sizing: border-box;
     width: 100%;
@@ -140,6 +134,7 @@ canvas {
     }
     .tab-switch:checked + .tab-label + .tab-content {
         height: auto;
+        overflow: visible;
         opacity: 1;
     }
 }

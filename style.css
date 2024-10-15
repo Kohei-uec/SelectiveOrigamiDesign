@@ -2,15 +2,6 @@ svg {
     width: 100%;
     height: 100%;
 }
-svg polygon {
-    stroke-width: 1px;
-}
-.front {
-    fill: #353030;
-}
-.back {
-    fill: #fef8f6;
-}
 
 .wrap-GUI {
     padding: 0.5em;

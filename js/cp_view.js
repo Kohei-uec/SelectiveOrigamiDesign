@@ -2,8 +2,8 @@ import { Vec2d } from './vec2d.js';
 import { CP } from './cp.js';
 
 export class CPView {
-    static width = 2;
-    static rad = 2.5;
+    static width = 1.5;
+    static rad = 2.0;
     static move_rad = 5;
     constructor(canvas, cp) {
         //右クリック無効化

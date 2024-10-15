@@ -1,11 +1,91 @@
 import { Face } from './face.js';
 import { list } from '../cp_data/list.js';
+import { cp2cpURL, cp2pngURL, cp2svgURL, DLFile, fold2foldURL, fold2pngURL, fold2svgURL } from './file.js';
 
 export class GUI {
     constructor(face, cp_view, fold_view) {
         this.partsSelect = new PartsSelect(face, cp_view, fold_view);
-        this.faceColor = new FaceColor();
+        this.faceColor = new FaceColor(fold_view);
         this.faceOrder = new FaceOrders(face, fold_view);
+        this.fileIO = new FileIO(cp_view, fold_view);
+    }
+}
+
+class FileIO {
+    constructor(cp_view, fold_view) {
+        this.cp_view = cp_view;
+        this.fold_view = fold_view;
+
+        //add event listener
+        document.getElementById('dl_cp_btn').addEventListener('click', () => {
+            const name = document.getElementById('dl_cp_name').value;
+            const type = document.getElementById('dl_cp_type').value;
+            if (type === 'cp') {
+                this.DL_cp_cp(name);
+            } else if (type === 'svg') {
+                this.DL_cp_svg(name);
+            } else if (type === 'png') {
+                this.DL_cp_png(name);
+            }
+        });
+
+        document.getElementById('dl_fold_btn').addEventListener('click', () => {
+            const name = document.getElementById('dl_fold_name').value;
+            const type = document.getElementById('dl_fold_type').value;
+            console.log(name, type);
+            if (type === 'fold') {
+                this.DL_fold_fold(name);
+            } else if (type === 'svg') {
+                this.DL_fold_svg(name);
+            } else if (type === 'png') {
+                this.DL_fold_png(name);
+            }
+        });
+    }
+
+    //cp
+    DL_cp_svg(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'svg',
+            url: cp2svgURL(this.cp_view.cp),
+        });
+    }
+    DL_cp_cp(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'cp',
+            url: cp2cpURL(this.cp_view.cp),
+        });
+    }
+    DL_cp_png(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'png',
+            url: cp2pngURL(this.cp_view.cp),
+        });
+    }
+    //fold
+    DL_fold_svg(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'svg',
+            url: fold2svgURL(this.fold_view.svg),
+        });
+    }
+    DL_fold_fold(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'fold',
+            url: fold2foldURL(this.fold_view.folded),
+        });
+    }
+    async DL_fold_png(name) {
+        DLFile({
+            filename: name.length > 0 ? name : null,
+            filetype: 'png',
+            url: await fold2pngURL(this.fold_view.svg),
+        });
     }
 }
 class PartsSelect {
@@ -111,7 +191,8 @@ class FaceOrders {
     }
 }
 class FaceColor {
-    constructor(fid = 'front_color', bid = 'back_color') {
+    constructor(fold_view, fid = 'front_color', bid = 'back_color') {
+        this.fold_view = fold_view;
         this.inputs = [document.getElementById(fid), document.getElementById(bid)];
         this.inputs.forEach((elm) => {
             elm.addEventListener('change', (e) => {
@@ -120,29 +201,6 @@ class FaceColor {
         });
     }
     setColor() {
-        const classNames = ['.front', '.back'];
-        classNames.forEach((className, i) => {
-            const rule = getRuleBySelector(className);
-            rule.style.fill = this.inputs[i].value;
-        });
+        this.fold_view.setColor(this.inputs[0].value, this.inputs[1].value);
     }
-}
-
-//https://qiita.com/life5618/items/950558e4b72c038333f8
-// 指定セレクタのCSSルールを取得する
-// 呼び出し例　getRuleBySelector(".inner1")   selectorにCSSセレクタ
-function getRuleBySelector(selector) {
-    for (const sheet of document.styleSheets) {
-        try {
-            sheet.cssRules;
-        } catch {
-            continue;
-        }
-        for (const rule of sheet.cssRules) {
-            if (selector === rule.selectorText) {
-                return rule;
-            }
-        }
-    }
-    return null;
 }

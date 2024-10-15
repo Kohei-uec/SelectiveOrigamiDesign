@@ -324,19 +324,19 @@
                         <div class="field has-addons">
                             <div class="field has-addons">
                                 <p class="control">
-                                    <input class="input" type="text" placeholder="file name" />
+                                    <input class="input" type="text" placeholder="file name" id="dl_cp_name" />
                                 </p>
                                 <p class="control">
                                     <span class="select">
-                                        <select>
-                                            <option>.png</option>
-                                            <option>.svg</option>
-                                            <option>.cp</option>
+                                        <select id="dl_cp_type">
+                                            <option value="png">.png</option>
+                                            <option value="svg">.svg</option>
+                                            <option value="cp">.cp</option>
                                         </select>
                                     </span>
                                 </p>
                                 <p class="control">
-                                    <button class="button is-primary">Download</button>
+                                    <button class="button is-primary" id="dl_cp_btn">Download</button>
                                 </p>
                             </div>
                         </div>
@@ -357,19 +357,19 @@
                         <label class="label"> Export folded figure file</label>
                         <div class="field has-addons">
                             <p class="control">
-                                <input class="input" type="text" placeholder="file name" />
+                                <input class="input" type="text" placeholder="file name" id="dl_fold_name" />
                             </p>
                             <p class="control">
                                 <span class="select">
-                                    <select>
-                                        <option>.png</option>
-                                        <option>.svg</option>
-                                        <option>.fold</option>
+                                    <select id="dl_fold_type">
+                                        <option value="png">.png</option>
+                                        <option value="svg">.svg</option>
+                                        <option value="fold">.fold</option>
                                     </select>
                                 </span>
                             </p>
                             <p class="control">
-                                <button class="button is-primary">Download</button>
+                                <button class="button is-primary" id="dl_fold_btn">Download</button>
                             </p>
                         </div>
                     </section>

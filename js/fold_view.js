@@ -5,6 +5,29 @@ export class FOLDView {
     constructor(wrap) {
         this.svg = ear.svg(wrap);
         this.onBuild = null; //event handler
+
+        //init style
+        this.colorF = '#353030';
+        this.colorB = '#fef8f6';
+    }
+
+    setColor(front, back) {
+        this.colorF = front;
+        this.colorB = back;
+        this.draw();
+    }
+    changeInLineStyle() {
+        //set inline style
+        //polygons
+        const list = Array.from(this.svg.children[0].children).filter((node) => node.classList.contains('faces'))[0]
+            .children;
+        for (const poly of list) {
+            if (poly.classList.contains('front')) {
+                poly.setAttribute('fill', this.colorF);
+            } else {
+                poly.setAttribute('fill', this.colorB);
+            }
+        }
     }
 
     setFOLD(cp, i = 0) {
@@ -43,8 +66,9 @@ export class FOLDView {
     draw() {
         //display
         this.svg.removeChildren();
-        this.svg.origami(this.folded);
+        this.svg.origami(this.folded, { strokeWidth: 0.001 });
         setSVGPadding(this.svg);
+        this.changeInLineStyle();
     }
 
     build(cp) {

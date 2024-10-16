@@ -1,22 +1,110 @@
 import { Face } from './face.js';
 import { list } from '../cp_data/list.js';
-import { cp2cpURL, cp2pngURL, cp2svgURL, DLFile, fold2foldURL, fold2pngURL, fold2svgURL } from './file.js';
+import {
+    cp2cpURL,
+    cp2pngURL,
+    cp2svgURL,
+    DLFile,
+    face2jsonURL,
+    fold2foldURL,
+    fold2pngURL,
+    fold2svgURL,
+    getFileText,
+    openLS,
+    saveLS,
+} from './file.js';
 
 export class GUI {
     constructor(face, cp_view, fold_view) {
         this.partsSelect = new PartsSelect(face, cp_view, fold_view);
         this.faceColor = new FaceColor(fold_view);
         this.faceOrder = new FaceOrders(face, fold_view);
-        this.fileIO = new FileIO(cp_view, fold_view);
+        this.fileIO = new FileIO(face, cp_view, fold_view, this);
+        this.setExample();
+    }
+
+    setExample() {
+        document.getElementById('example1').addEventListener('click', async () => {
+            const project = JSON.parse(await getFileText('../example/example1.json'));
+            this.setProjectUI(project);
+        });
+        document.getElementById('example2').addEventListener('click', async () => {
+            const project = JSON.parse(await getFileText('../example/example2.json'));
+            this.setProjectUI(project);
+        });
+    }
+
+    async setProjectUI(project) {
+        this.faceColor.setColor(project.colors);
+        await this.partsSelect.setSelection(project.path);
+        this.faceOrder.setOrders(project.orders);
+    }
+}
+
+class Project {
+    constructor(face, fold_view) {
+        this.path = {};
+        for (const part of Face.order) {
+            this.path[part] = face.path[part];
+        }
+
+        this.colors = {
+            front: fold_view.colorF,
+            back: fold_view.colorB,
+        };
+
+        const orders = document.getElementsByName('order');
+        this.orders = [];
+        orders.forEach((val) => {
+            this.orders.push(val.checked);
+        });
     }
 }
 
 class FileIO {
-    constructor(cp_view, fold_view) {
+    constructor(face, cp_view, fold_view, GUI) {
+        this.face = face;
         this.cp_view = cp_view;
         this.fold_view = fold_view;
 
+        this.setProjectList();
+
         //add event listener
+        document.getElementById('save_pro_btn').addEventListener('click', () => {
+            const name = document.getElementById('save_pro_name').value;
+            if (openLS(name)) {
+                //over write?
+                if (!confirm('overwrite?')) {
+                    return;
+                }
+            }
+            saveLS({
+                filename: name.length > 0 ? name : null,
+                obj: new Project(this.face, this.fold_view),
+            });
+
+            this.setProjectList();
+        });
+        document.getElementById('open_pro_btn').addEventListener('click', () => {
+            const name = document.getElementById('open_pro_name').value;
+            GUI.setProjectUI(openLS(name));
+        });
+        document.getElementById('upload_pro').addEventListener('change', () => {
+            const file = document.getElementById('upload_pro').files[0];
+            const reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+                GUI.setProjectUI(JSON.parse(reader.result));
+            };
+        });
+        document.getElementById('dl_pro_btn').addEventListener('click', () => {
+            const name = document.getElementById('dl_pro_name').value;
+            DLFile({
+                filename: name.length > 0 ? name : null,
+                filetype: 'json',
+                url: face2jsonURL(new Project(this.face, this.fold_view)),
+            });
+        });
         document.getElementById('dl_cp_btn').addEventListener('click', () => {
             const name = document.getElementById('dl_cp_name').value;
             const type = document.getElementById('dl_cp_type').value;
@@ -41,6 +129,22 @@ class FileIO {
                 this.DL_fold_png(name);
             }
         });
+    }
+
+    //local storage list
+    setProjectList() {
+        const select = document.getElementById('open_pro_name');
+        if (localStorage.length > 0) {
+            select.innerHTML = '';
+        }
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            //const item = localStorage.getItem(key);
+            const option = document.createElement('option');
+            select.appendChild(option);
+            option.value = key;
+            option.innerText = key;
+        }
     }
 
     //cp
@@ -129,6 +233,22 @@ class PartsSelect {
             select.appendChild(opt);
         }
     }
+
+    async setSelection(selections) {
+        const names = Face.order;
+        for (let i = 0; i < names.length; i++) {
+            const name = names[i];
+            const elm = document.getElementsByName(name)[0];
+            const option = elm.querySelector(`option[value='${selections[name]}']`);
+            if (option) {
+                option.selected = true;
+                this.face.setParts(name, this[name].value);
+            } else {
+                throw new Error('no option');
+            }
+        }
+        await this.setView();
+    }
 }
 
 class FaceOrders {
@@ -141,6 +261,13 @@ class FaceOrders {
         fold_view.onBuild = () => {
             this.setUI();
         };
+    }
+    setOrders(inputs) {
+        const orders = document.getElementsByName('order');
+        orders.forEach((order, i) => {
+            order.checked = inputs[i] ?? false;
+        });
+        this.setView();
     }
     setView() {
         const orders = document.getElementsByName('order');
@@ -196,11 +323,18 @@ class FaceColor {
         this.inputs = [document.getElementById(fid), document.getElementById(bid)];
         this.inputs.forEach((elm) => {
             elm.addEventListener('change', (e) => {
-                this.setColor();
+                this.setView();
             });
         });
     }
-    setColor() {
+
+    setColor(colors) {
+        this.inputs[0].value = colors.front;
+        this.inputs[1].value = colors.back;
+        this.setView();
+    }
+
+    setView() {
         this.fold_view.setColor(this.inputs[0].value, this.inputs[1].value);
     }
 }

@@ -45,24 +45,24 @@
                             <span><i class="fa-regular fa-file-lines"></i> File</span>
                         </div>
                         <div class="navbar-dropdown is-boxed">
-                            <button class="navbar-item js-modal-trigger" data-target="modal-open">
+                            <a class="navbar-item js-modal-trigger" data-target="modal-open">
                                 <span><i class="fa-regular fa-folder-open"></i> Open Project</span>
-                            </button>
+                            </a>
                             <hr class="navbar-divider" />
 
-                            <button class="navbar-item js-modal-trigger" data-target="modal-save">
+                            <a class="navbar-item js-modal-trigger" data-target="modal-save">
                                 <span><i class="fa-solid fa-floppy-disk"></i> Save Project</span>
-                            </button>
+                            </a>
                             <hr class="navbar-divider" />
 
-                            <button class="navbar-item js-modal-trigger" data-target="modal-dl-cp">
+                            <a class="navbar-item js-modal-trigger" data-target="modal-dl-cp">
                                 <span><i class="fa-solid fa-file-image"></i> Download CP</span>
-                            </button>
+                            </a>
                             <hr class="navbar-divider js-modal-trigger" />
 
-                            <button class="navbar-item js-modal-trigger" data-target="modal-dl-fold">
+                            <a class="navbar-item js-modal-trigger" data-target="modal-dl-fold">
                                 <span><i class="fa-solid fa-file-image"></i> Download Fold</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -71,9 +71,8 @@
                             <span><i class="fa-regular fa-face-smile"></i> Example</span>
                         </div>
                         <div class="navbar-dropdown is-boxed">
-                            <button class="navbar-item">Example1</button>
-                            <button class="navbar-item">Example2</button>
-                            <button class="navbar-item">Example3</button>
+                            <a class="navbar-item" id="example1">Example1</a>
+                            <a class="navbar-item" id="example2">Example2</a>
                         </div>
                     </div>
                 </div>
@@ -240,21 +239,22 @@
                         <div class="field has-addons">
                             <p class="control">
                                 <span class="select">
-                                    <select>
-                                        <option>project name</option>
-                                        <option>project name</option>
+                                    <select id="open_pro_name">
+                                        <option value="null" disabled selected>no project</option>
                                     </select>
                                 </span>
                             </p>
                             <p class="control">
-                                <button class="button is-primary">Open</button>
+                                <button class="button is-primary" id="open_pro_btn">
+                                    <span> <i class="fa-solid fa-file-arrow-up"></i> Open</span>
+                                </button>
                             </p>
                         </div>
 
                         <label class="label">Import project file from device</label>
                         <div class="file has-name">
                             <label class="file-label">
-                                <input class="file-input" type="file" name="resume" accept=".json" />
+                                <input class="file-input" type="file" name="resume" accept=".json" id="upload_pro" />
                                 <span class="file-cta">
                                     <span class="file-icon">
                                         <i class="fas fa-upload"></i>
@@ -281,17 +281,19 @@
                         <label class="label"> Save project in browser storage </label>
                         <div class="field has-addons">
                             <p class="control">
-                                <input class="input" type="text" placeholder="project name" />
+                                <input class="input" type="text" placeholder="project name" id="save_pro_name" />
                             </p>
                             <p class="control">
-                                <button class="button is-primary">Save</button>
+                                <button class="button is-primary" id="save_pro_btn">
+                                    <span> <i class="fa-solid fa-file-arrow-down"></i> Save</span>
+                                </button>
                             </p>
                         </div>
 
                         <label class="label">Export project file</label>
                         <div class="field has-addons">
                             <p class="control">
-                                <input class="input" type="text" placeholder="file name" />
+                                <input class="input" type="text" placeholder="file name" id="dl_pro_name" />
                             </p>
                             <p class="control">
                                 <span class="select">
@@ -301,7 +303,9 @@
                                 </span>
                             </p>
                             <p class="control">
-                                <button class="button is-primary">Download</button>
+                                <button class="button is-primary" id="dl_pro_btn">
+                                    <span> <i class="fa-solid fa-download"></i> Download</span>
+                                </button>
                             </p>
                         </div>
                     </section>
@@ -334,7 +338,9 @@
                                     </span>
                                 </p>
                                 <p class="control">
-                                    <button class="button is-primary" id="dl_cp_btn">Download</button>
+                                    <button class="button is-primary" id="dl_cp_btn">
+                                        <span> <i class="fa-solid fa-download"></i> Download</span>
+                                    </button>
                                 </p>
                             </div>
                         </div>
@@ -367,7 +373,9 @@
                                 </span>
                             </p>
                             <p class="control">
-                                <button class="button is-primary" id="dl_fold_btn">Download</button>
+                                <button class="button is-primary" id="dl_fold_btn">
+                                    <span> <i class="fa-solid fa-download"></i> Download</span>
+                                </button>
                             </p>
                         </div>
                     </section>

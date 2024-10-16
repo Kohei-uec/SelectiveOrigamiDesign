@@ -11,6 +11,25 @@ export async function loadCP(path) {
     return CP.parse(text);
 }
 
+//local storage
+export function saveLS(option) {
+    const filename = option.filename ?? 'origamiFace';
+    const filetype = option.filetype ?? 'json';
+    const obj = option.obj ?? { origami: null };
+    obj.filetype = filetype;
+    const objTxt = JSON.stringify(obj);
+
+    return localStorage.setItem(filename, objTxt);
+}
+export function openLS(name) {
+    const data = localStorage.getItem(name);
+    if (data) {
+        return JSON.parse(data);
+    }
+    return data;
+}
+
+//real file
 export function DLFile(option) {
     const filename = option.filename ?? 'origamiFace';
     const filetype = option.filetype ?? 'txt';
@@ -22,6 +41,12 @@ export function DLFile(option) {
     document.body.appendChild(a);
     a.click();
     a.remove();
+}
+
+//project
+export function face2jsonURL(face) {
+    const blob = new Blob([JSON.stringify(face)], { type: 'text/plain' });
+    return URL.createObjectURL(blob);
 }
 
 //fold

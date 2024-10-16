@@ -41,91 +41,43 @@
             <div id="navbarExampleTransparentExample" class="navbar-menu">
                 <div class="navbar-start">
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <div class="navbar-link">File</div>
+                        <div class="navbar-link">
+                            <span><i class="fa-regular fa-file-lines"></i> File</span>
+                        </div>
                         <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item"> Load from Browser </a>
-                            <a class="navbar-item"> Import file </a>
+                            <a class="navbar-item js-modal-trigger" data-target="modal-open">
+                                <span><i class="fa-regular fa-folder-open"></i> Open Project</span>
+                            </a>
                             <hr class="navbar-divider" />
 
-                            <a class="navbar-item"> Save in Browser </a>
-                            <a class="navbar-item">Download</a>
+                            <a class="navbar-item js-modal-trigger" data-target="modal-save">
+                                <span><i class="fa-solid fa-floppy-disk"></i> Save Project</span>
+                            </a>
                             <hr class="navbar-divider" />
 
-                            <a class="navbar-item">Download CP</a>
-                            <hr class="navbar-divider" />
+                            <a class="navbar-item js-modal-trigger" data-target="modal-dl-cp">
+                                <span><i class="fa-solid fa-file-image"></i> Download CP</span>
+                            </a>
+                            <hr class="navbar-divider js-modal-trigger" />
 
-                            <a class="navbar-item">Download Folded Figure</a>
+                            <a class="navbar-item js-modal-trigger" data-target="modal-dl-fold">
+                                <span><i class="fa-solid fa-file-image"></i> Download Fold</span>
+                            </a>
                         </div>
                     </div>
 
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <div class="navbar-link">Example</div>
+                        <div class="navbar-link">
+                            <span><i class="fa-regular fa-face-smile"></i> Example</span>
+                        </div>
                         <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item"> Example1 </a>
-                            <a class="navbar-item"> Example2 </a>
-                            <hr class="navbar-divider" />
-
-                            <a class="navbar-item"> Example3 </a>
-                        </div>
-                    </div>
-
-                    <a class="navbar-item" href="/test/"> test </a>
-                </div>
-
-                <div class="navbar-end" style="display: none">
-                    <div class="navbar-item">
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <a class="button is-primary" href="#">
-                                    <span class="icon">
-                                        <i class="fas fa-download"></i>
-                                    </span>
-                                    <span>Download</span>
-                                </a>
-                            </div>
-
-                            <div class="control">
-                                <div class="file">
-                                    <label class="file-label">
-                                        <input
-                                            id="test_file"
-                                            class="file-input"
-                                            type="file"
-                                            name="resume"
-                                            accept=".cp"
-                                        />
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label"> Choose a cp file… </span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="control">
-                                <div class="file">
-                                    <label class="file-label">
-                                        <input
-                                            id="fold_file"
-                                            class="file-input"
-                                            type="file"
-                                            name="resume"
-                                            accept=".fold"
-                                        />
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label"> Choose a fold file… </span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
+                            <a class="navbar-item" id="example1">Example1</a>
+                            <a class="navbar-item" id="example2">Example2</a>
                         </div>
                     </div>
                 </div>
+
+                <div class="navbar-end"></div>
             </div>
         </nav>
 
@@ -135,140 +87,91 @@
                     <input id="TAB-P" type="checkbox" class="tab-switch" checked="checked" disabled />
                     <label class="tab-label" for="TAB-P">
                         <div class="tab-title">
-                            <h2><i class="fa-solid fa-diagram-project"></i> Project</h2>
+                            <h2><i class="fa-solid fa-file"></i> Project</h2>
                         </div>
                     </label>
 
                     <section class="tab-content">
-                        <div class="wrap-tree">
-                            <div class="tree-node">
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select>
-                                        <option value="default.cp">正方形</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="wrap-GUI">
+                            <h3><i class="fa-solid fa-layer-group"></i> Order</h3>
+                            <div id="wrap_order" class="wrap-ui"></div>
 
-                            <div class="tree-node">
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select>
-                                        <option value="default.cp">魚の基本形</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="tree-node">
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select name="top">
-                                        <option value="default.cp">上パーツ</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tree-node">
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select name="right">
-                                        <option value="default.cp">右目</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tree-node">
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select name="left">
-                                        <option value="default.cp">左目</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tree-node">
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest"></span>
-                                <span class="tree-nest last"></span>
-                                <div class="select">
-                                    <select name="bottom">
-                                        <option value="default.cp">下パーツ</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <br />
-                            <div>
-                                <label>紙の重なり順</label>
-                                <button class="button" id="order_btn">next</button>
-                                <br />
-                                色
+                            <h3><i class="fa-solid fa-palette"></i> Color</h3>
+                            <div class="wrap-ui">
+                                <label for="front_color">front</label>
                                 <input type="color" class="input" id="front_color" value="#353030" />
+                                <label for="back_color">back</label>
                                 <input type="color" class="input" id="back_color" value="#fef8f6" />
                             </div>
-                        </div>
+                            <h3><i class="fa-solid fa-diagram-project"></i> Structure</h3>
+                            <div class="wrap-ui">
+                                <div class="tree-node">
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select>
+                                            <option value="default.cp">正方形</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                        <div class="field has-addons" style="display: none">
-                            <p class="control">
-                                <span class="select">
-                                    <select>
-                                        <option>project name</option>
-                                        <option>project name</option>
-                                    </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <button class="button">Load from Browser</button>
-                            </p>
-                        </div>
+                                <div class="tree-node">
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select>
+                                            <option value="default.cp">魚の基本形</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                        <div class="file has-name" style="display: none">
-                            <label class="file-label">
-                                <input class="file-input" type="file" name="resume" accept=".json" />
-                                <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label"> Choose a file… </span>
-                                </span>
-                                <span class="file-name"> ProjectFile.json </span>
-                            </label>
-                        </div>
-
-                        <div class="field has-addons" style="display: none">
-                            <p class="control">
-                                <input class="input" type="text" placeholder="project name" />
-                            </p>
-                            <p class="control">
-                                <button class="button">Save in Browser</button>
-                            </p>
-                        </div>
-
-                        <div class="field has-addons" style="display: none">
-                            <p class="control">
-                                <input class="input" type="text" placeholder="file name" />
-                            </p>
-                            <p class="control">
-                                <span class="select">
-                                    <select disabled>
-                                        <option>.json</option>
-                                    </select>
-                                </span>
-                            </p>
-                            <p class="control">
-                                <button class="button is-primary">Download</button>
-                            </p>
+                                <div class="tree-node">
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select name="top">
+                                            <option value="default.cp">上パーツ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="tree-node">
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select name="right">
+                                            <option value="default.cp">右目</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="tree-node">
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select name="left">
+                                            <option value="default.cp">左目</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="tree-node">
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest"></span>
+                                    <span class="tree-nest last"></span>
+                                    <div class="select">
+                                        <select name="bottom">
+                                            <option value="default.cp">下パーツ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
 
                 <div class="wrap-2tabs">
                     <div class="wrap-tab">
-                        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" />
+                        <input id="TAB-01" type="radio" name="TAB" class="tab-switch" />
                         <label class="tab-label" for="TAB-01">
                             <div class="tab-title">
                                 <h2><i class="fa-solid fa-vector-square"></i> Crease Patten</h2>
@@ -278,30 +181,12 @@
                             <div class="wrap-canvas" id="wrap_cp_canvas">
                                 <canvas id="cp_canvas"></canvas>
                             </div>
-
-                            <div class="field has-addons" style="display: none">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="file name" />
-                                </p>
-                                <p class="control">
-                                    <span class="select">
-                                        <select>
-                                            <option>.cp</option>
-                                            <option>.svg</option>
-                                            <option>.png</option>
-                                        </select>
-                                    </span>
-                                </p>
-                                <p class="control">
-                                    <button class="button is-primary">保存</button>
-                                </p>
-                            </div>
                         </section>
                         <div class="tab-dummy-content"></div>
                     </div>
 
                     <div class="wrap-tab">
-                        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" />
+                        <input id="TAB-02" type="radio" name="TAB" class="tab-switch" checked="checked" />
                         <label class="tab-label" for="TAB-02">
                             <div class="tab-title">
                                 <h2><i class="fa-solid fa-map"></i> Fold</h2>
@@ -311,23 +196,6 @@
                             <div class="wrap-canvas" id="wrap_fold">
                                 <!-- <canvas id="fold_canvas"></canvas> -->
                             </div>
-
-                            <div class="field has-addons" style="display: none">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="file name" />
-                                </p>
-                                <p class="control">
-                                    <span class="select">
-                                        <select>
-                                            <option>.fold</option>
-                                            <option>.png</option>
-                                        </select>
-                                    </span>
-                                </p>
-                                <p class="control">
-                                    <button class="button is-primary">保存</button>
-                                </p>
-                            </div>
                         </section>
                     </div>
                 </div>
@@ -336,34 +204,183 @@
 
         <footer class="footer">
             <div class="content has-text-centered">
-                <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita 2024.</p>
+                <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita.</p>
                 <p>
-                    with <strong>FOLD</strong> file format by Erik Demaine, Jason Ku, Robert Lang -
-                    <a href="https://github.com/edemaine/FOLD/">https://github.com/edemaine/FOLD/</a>. (licensed
-                    <a href="https://opensource.org/license/mit">MIT</a>)
-                </p>
-                <p>
-                    with <strong>Rabbit Ear</strong> by Kraft -
-                    <a href="https://rabbitear.org/">https://rabbitear.org/</a>. (licensed GNU GPLv3)
-                </p>
-                <p style="display: none">
-                    with <strong>three.js</strong> by three.js authors -
-                    <a href="https://threejs.org/">https://threejs.org/</a>. (licensed
-                    <a href="https://opensource.org/license/mit">MIT</a>)
-                </p>
-                <p>
-                    with <strong>Font Awesome</strong> by Dave Gandy -
-                    <a href="http://fontawesome.io">http://fontawesome.io</a>. (<a
-                        href="https://fontawesome.com/v4/license/"
-                        >license</a
-                    >)
-                </p>
-                <p>
-                    with <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a> -
-                    <a href="https://bulma.io/">https://bulma.io/</a>. (licensed
-                    <a href="https://opensource.org/license/mit">MIT</a>)
+                    with <a href="https://rabbitear.org/"><strong>Rabbit Ear</strong></a>
+                    by Kraft (licensed GNU GPLv3),
+                    <br />
+                    with
+                    <a href="https://github.com/edemaine/FOLD/"><strong>FOLD</strong></a>
+                    by Erik Demaine, Jason Ku, Robert Lang (licensed
+                    <a href="https://opensource.org/license/mit"> MIT </a>),
+                    <br />
+                    with
+                    <a href="http://fontawesome.io"><strong>Font Awesome</strong></a>
+                    by Dave Gandy (<a href="https://fontawesome.com/v4/license/">license</a>),
+                    <br />
+                    with
+                    <a href="https://bulma.io/"><strong>Bulma</strong></a>
+                    by <a href="https://jgthms.com">Jeremy Thomas</a> (licensed
+                    <a href="https://opensource.org/license/mit">MIT</a>).
                 </p>
             </div>
         </footer>
+
+        <div class="modal" id="modal-open">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <div class="level">
+                        <div class="level-left is-size-3">Open Project</div>
+                    </div>
+                    <section>
+                        <label class="label"> Open project from browser storage </label>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <span class="select">
+                                    <select id="open_pro_name">
+                                        <option value="null" disabled selected>no project</option>
+                                    </select>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary" id="open_pro_btn">
+                                    <span> <i class="fa-solid fa-file-arrow-up"></i> Open</span>
+                                </button>
+                            </p>
+                        </div>
+
+                        <label class="label">Import project file from device</label>
+                        <div class="file has-name">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="resume" accept=".json" id="upload_pro" />
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label"> Choose a file… </span>
+                                </span>
+                                <span class="file-name"> .json </span>
+                            </label>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-save">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <div class="level">
+                        <div class="level-left is-size-3">Save Project</div>
+                    </div>
+                    <section>
+                        <label class="label"> Save project in browser storage </label>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="project name" id="save_pro_name" />
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary" id="save_pro_btn">
+                                    <span> <i class="fa-solid fa-file-arrow-down"></i> Save</span>
+                                </button>
+                            </p>
+                        </div>
+
+                        <label class="label">Export project file</label>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="file name" id="dl_pro_name" />
+                            </p>
+                            <p class="control">
+                                <span class="select">
+                                    <select disabled>
+                                        <option>.json</option>
+                                    </select>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary" id="dl_pro_btn">
+                                    <span> <i class="fa-solid fa-download"></i> Download</span>
+                                </button>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-dl-cp">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <div class="level">
+                        <div class="level-left is-size-3">Crease Pattern</div>
+                    </div>
+                    <section>
+                        <label class="label"> Export CP file </label>
+                        <div class="field has-addons">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="file name" id="dl_cp_name" />
+                                </p>
+                                <p class="control">
+                                    <span class="select">
+                                        <select id="dl_cp_type">
+                                            <option value="png">.png</option>
+                                            <option value="svg">.svg</option>
+                                            <option value="cp">.cp</option>
+                                        </select>
+                                    </span>
+                                </p>
+                                <p class="control">
+                                    <button class="button is-primary" id="dl_cp_btn">
+                                        <span> <i class="fa-solid fa-download"></i> Download</span>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-dl-fold">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <div class="level">
+                        <div class="level-left is-size-3">Folded Figure</div>
+                    </div>
+                    <section>
+                        <label class="label"> Export folded figure file</label>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="file name" id="dl_fold_name" />
+                            </p>
+                            <p class="control">
+                                <span class="select">
+                                    <select id="dl_fold_type">
+                                        <option value="png">.png</option>
+                                        <option value="svg">.svg</option>
+                                        <option value="fold">.fold</option>
+                                    </select>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary" id="dl_fold_btn">
+                                    <span> <i class="fa-solid fa-download"></i> Download</span>
+                                </button>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

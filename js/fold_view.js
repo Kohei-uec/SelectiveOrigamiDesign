@@ -4,9 +4,74 @@ import ear from 'rabbit-ear';
 export class FOLDView {
     constructor(wrap) {
         this.svg = ear.svg(wrap);
+        this.onBuild = null; //event handler
+
+        //init style
+        this.colorF = '#353030';
+        this.colorB = '#fef8f6';
+    }
+
+    setColor(front, back) {
+        this.colorF = front;
+        this.colorB = back;
+        this.draw();
+    }
+    changeInLineStyle() {
+        //set inline style
+        //polygons
+        const list = Array.from(this.svg.children[0].children).filter((node) => node.classList.contains('faces'))[0]
+            .children;
+        for (const poly of list) {
+            if (poly.classList.contains('front')) {
+                poly.setAttribute('fill', this.colorF);
+            } else {
+                poly.setAttribute('fill', this.colorB);
+            }
+        }
     }
 
     setFOLD(cp, i = 0) {
+        this.build(cp);
+        this.folded.faceOrders = this.all[i % this.all.length];
+
+        this.draw();
+    }
+    setOrderNum(n) {
+        this.folded.faceOrders = this.all[n % this.all.length];
+        this.draw();
+    }
+    getOrderNum() {
+        return this.all.length;
+    }
+    setOrder(pattern) {
+        const count = this.solved.count();
+        let faceOrders;
+        if (typeof count === 'object') {
+            faceOrders = this.solved.compile(pattern);
+        } else {
+            faceOrders = this.all[i % this.all.length];
+        }
+        this.folded.faceOrders = faceOrders;
+        this.draw();
+    }
+    getCount() {
+        const count = this.solved.count();
+        if (typeof count === 'object') {
+            return count;
+        } else {
+            return [];
+        }
+    }
+
+    draw() {
+        //display
+        this.svg.removeChildren();
+        this.svg.origami(this.folded, { strokeWidth: 0.001 });
+        setSVGPadding(this.svg);
+        this.changeInLineStyle();
+    }
+
+    build(cp) {
         //parse
         const t = {
             0: 'N',
@@ -38,14 +103,14 @@ export class FOLDView {
         const graph = ear.graph(fold).populate({ faces: true });
         const face = graph.nearestFace([0, 0]);
         const folded = graph.flatFolded([face]);
-        const solved = ear.layer(folded).compileAll();
-        folded.faceOrders = solved[i % solved.length];
-        //ear.graph.makeFacesLayer(folded);
+        const solved = ear.layer(folded);
 
-        //display
-        this.svg.removeChildren();
-        this.svg.origami(folded);
-        setSVGPadding(this.svg);
+        this.folded = folded;
+        this.solved = solved;
+        this.all = this.solved.compileAll();
+        if (typeof this.onBuild === 'function') {
+            this.onBuild();
+        }
     }
 }
 

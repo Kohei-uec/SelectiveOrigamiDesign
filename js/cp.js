@@ -1,12 +1,12 @@
-import { Vec2d } from "./vec2d.js";
+import { Vec2d } from './vec2d.js';
 
-function edgeStr(typeNum) {
+export function edgeStr(typeNum) {
     //follow .FOLD
     const t = {
-        0: "N", //none
-        1: "B",
-        2: "M",
-        3: "V",
+        0: 'N', //none
+        1: 'B',
+        2: 'M',
+        3: 'V',
     };
     return t[typeNum];
 }
@@ -48,10 +48,10 @@ export class CP {
         return this.lines2cp(lines);
     }
     static txt2lines(cp_txt) {
-        const cp = cp_txt.split("\n"); //行ごとに分割
+        const cp = cp_txt.split('\n'); //行ごとに分割
         const liens = [];
         for (const line_txt of cp) {
-            const line = line_txt.split(" "); //値ごとに分割
+            const line = line_txt.split(' '); //値ごとに分割
             if (line.length !== 5) {
                 break;
             }
@@ -89,19 +89,12 @@ export class CP {
             [3, 0],
         ];
 
-        this.edges_assignment = [
-            CP.line.cut,
-            CP.line.cut,
-            CP.line.cut,
-            CP.line.cut,
-        ];
+        this.edges_assignment = [CP.line.cut, CP.line.cut, CP.line.cut, CP.line.cut];
     }
 
     //vertices
     add_v(x, y) {
-        const v1 = this.vertices_coords.findIndex((value) =>
-            Vec2d.Same(value[0], value[1], x, y)
-        );
+        const v1 = this.vertices_coords.findIndex((value) => Vec2d.Same(value[0], value[1], x, y));
         if (v1 === -1) {
             const length = this.vertices_coords.push([x, y]);
             return length - 1;
@@ -113,9 +106,7 @@ export class CP {
     //交差は考慮しない
     add_e(v1, v2) {
         const l = this.edges_vertices.findIndex(
-            (val) =>
-                (val[0] === v1 && val[1] === v2) ||
-                (val[0] === v2 && val[1] === v1)
+            (val) => (val[0] === v1 && val[1] === v2) || (val[0] === v2 && val[1] === v1)
         );
         if (l === -1) {
             const length = this.edges_vertices.push([v1, v2]);
@@ -132,6 +123,6 @@ export class CP {
             this.edges_assignment.push(type);
             return;
         }
-        throw Error("out of edge index");
+        throw Error('out of edge index');
     }
 }

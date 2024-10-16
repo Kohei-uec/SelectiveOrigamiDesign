@@ -24,14 +24,13 @@ export class GUI {
     }
 
     setExample() {
-        document.getElementById('example1').addEventListener('click', async () => {
-            const project = JSON.parse(await getFileText('../example/example1.json'));
-            this.setProjectUI(project);
-        });
-        document.getElementById('example2').addEventListener('click', async () => {
-            const project = JSON.parse(await getFileText('../example/example2.json'));
-            this.setProjectUI(project);
-        });
+        const list = ['example1', 'example2'];
+        for (const v of list) {
+            document.getElementById(v).addEventListener('click', async () => {
+                const project = JSON.parse(await getFileText(`../example/${v}.json`));
+                this.setProjectUI(project);
+            });
+        }
     }
 
     async setProjectUI(project) {

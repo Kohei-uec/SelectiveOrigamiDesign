@@ -27,7 +27,9 @@ export class GUI {
         const list = ['example1', 'example2'];
         for (const v of list) {
             document.getElementById(v).addEventListener('click', async () => {
-                const project = JSON.parse(await getFileText(`../example/${v}.json`));
+                let path = document.location.href;
+                path = path.replace('index.html', '');
+                const project = JSON.parse(await getFileText(`${path}example/${v}.json`));
                 this.setProjectUI(project);
             });
         }

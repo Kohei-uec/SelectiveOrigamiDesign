@@ -24,7 +24,7 @@ export class GUI {
     }
 
     setExample() {
-        const list = ['example1', 'example2'];
+        const list = ['example1', 'example2', 'AppIcon'];
         for (const v of list) {
             document.getElementById(v).addEventListener('click', async () => {
                 let path = document.location.href;

@@ -224,13 +224,14 @@ class PartsSelect {
     }
 
     createOptionsList(select, name) {
+        const pre = name + ': ';
         if (name === 'left' || name === 'right') {
             name = 'side';
         }
         for (const fn of list[name]) {
             const opt = document.createElement('option');
             opt.value = fn;
-            opt.innerText = '@' + fn;
+            opt.innerText = pre + fn;
             select.appendChild(opt);
         }
     }

@@ -20,9 +20,12 @@ export const list = {
         'arrow2.cp',
         'arrow3.cp',
         'arrow4.cp',
+        'arrow5.cp',
         'rect1.cp',
         'rect2.cp',
         'thin1.cp',
         'thin2.cp',
+        'dia.cp',
+        'zigzag.cp',
     ],
 };

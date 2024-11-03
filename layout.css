@@ -41,6 +41,11 @@ main {
     display: none;
 }
 
+.wrap-GUI {
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
 .wrap-canvas {
     box-sizing: border-box;
     width: 100%;
@@ -154,5 +159,10 @@ canvas {
         display: block;
         width: 1px;
         height: max(calc(100vw - 2 * var(--side-margin)), 250px);
+    }
+
+    .wrap-GUI {
+        aspect-ratio: 1 / 1;
+        overflow-y: scroll;
     }
 }

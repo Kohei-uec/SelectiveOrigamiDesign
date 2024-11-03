@@ -1,5 +1,6 @@
 export const list = {
     top: [
+        'default.cp',
         'none.cp',
         'normal1.cp',
         'normal2.cp',
@@ -11,8 +12,9 @@ export const list = {
         'worried.cp',
         'thin.cp',
     ],
-    bottom: ['triangle.cp', 'smile.cp', 'rect.cp', 'sharp.cp', 'thin.cp', 'small.cp', 'Jagged_teeth.cp'],
+    bottom: ['default.cp', 'triangle.cp', 'smile.cp', 'rect.cp', 'sharp.cp', 'thin.cp', 'small.cp', 'Jagged_teeth.cp'],
     side: [
+        'default.cp',
         'simple.cp',
         'circle.cp',
         'heart.cp',

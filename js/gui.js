@@ -197,14 +197,12 @@ class PartsSelect {
     constructor(face, cp_view, fold_view, names = Face.order) {
         //select and option
         for (const name of names) {
-            this[name] = document.getElementsByName(name)[0];
+            this[name] = document.getElementById(name);
 
-            this[name].addEventListener('change', (e) => {
-                face.setParts(name, this[name].value);
+            this.createOptionsList(this[name], name, (fn) => {
+                face.setParts(name, fn);
                 this.setView();
             });
-
-            this.createOptionsList(this[name], name);
         }
 
         this.face = face;
@@ -223,28 +221,44 @@ class PartsSelect {
         this.fold_view.setFOLD(cp, this.i);
     }
 
-    createOptionsList(select, name) {
-        const pre = name + ': ';
-        if (name === 'left' || name === 'right') {
-            name = 'side';
+    createOptionsList(select, name, handler) {
+        let ind = name;
+        if (ind === 'left' || ind === 'right') {
+            ind = 'side';
         }
-        for (const fn of list[name]) {
-            const opt = document.createElement('option');
-            opt.value = fn;
-            opt.innerText = pre + fn;
-            select.appendChild(opt);
+        for (const fn of list[ind]) {
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = name;
+            radio.classList.add('my-option-radio');
+            radio.id = name + fn;
+
+            const opt = document.createElement('label');
+            opt.htmlFor = radio.id;
+            opt.classList.add('my-option');
+            opt.innerText = fn;
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    handler(fn);
+                }
+            });
+
+            const dummy = document.createElement('div');
+            dummy.style.width = '3em';
+            dummy.style.height = '3em';
+            dummy.style.backgroundColor = '#cfc';
+
+            opt.prepend(dummy);
+            select.append(radio, opt);
         }
     }
 
     async setSelection(selections) {
-        const names = Face.order;
-        for (let i = 0; i < names.length; i++) {
-            const name = names[i];
-            const elm = document.getElementsByName(name)[0];
-            const option = elm.querySelector(`option[value='${selections[name]}']`);
-            if (option) {
-                option.selected = true;
-                this.face.setParts(name, this[name].value);
+        for (const key of Object.keys(selections)) {
+            const elm = document.getElementById(key + selections[key]);
+            if (elm) {
+                elm.checked = true;
+                this.face.setParts(key, selections[key]); //not work event listener
             } else {
                 throw new Error('no option');
             }

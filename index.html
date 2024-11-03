@@ -12,6 +12,7 @@
         <script src="https://kit.fontawesome.com/10f2f78404.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./layout.css" />
+        <link rel="stylesheet" href="./my-select.css" />
 
         <link rel="icon" type="image/png" href="./favicon/favicon-48x48.png" sizes="48x48" />
         <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
@@ -113,64 +114,103 @@
                             </div>
                             <h3><i class="fa-solid fa-diagram-project"></i> Structure</h3>
                             <div class="wrap-ui">
-                                <div class="tree-node">
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select>
-                                            <option value="default.cp">正方形</option>
-                                        </select>
-                                    </div>
+                                <div class="my-select">
+                                    <input id="sel-0" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-0">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            正方形
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options">no option</div>
                                 </div>
 
-                                <div class="tree-node">
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select>
-                                            <option value="default.cp">魚の基本形</option>
-                                        </select>
-                                    </div>
+                                <div class="my-select">
+                                    <input id="sel-00" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-00">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            基本形
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options">no option</div>
                                 </div>
 
-                                <div class="tree-node">
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select name="top">
-                                            <option value="default.cp">上パーツ</option>
-                                        </select>
-                                    </div>
+                                <div class="my-select">
+                                    <input id="sel-01" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-01">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            上のパーツ
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options" id="top"></div>
                                 </div>
-                                <div class="tree-node">
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select name="right">
-                                            <option value="default.cp">右目</option>
-                                        </select>
-                                    </div>
+
+                                <div class="my-select">
+                                    <input id="sel-02" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-02">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            右のパーツ
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options" id="right"></div>
                                 </div>
-                                <div class="tree-node">
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select name="left">
-                                            <option value="default.cp">左目</option>
-                                        </select>
-                                    </div>
+
+                                <div class="my-select">
+                                    <input id="sel-03" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-03">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            左のパーツ
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options" id="left"></div>
                                 </div>
-                                <div class="tree-node">
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest"></span>
-                                    <span class="tree-nest last"></span>
-                                    <div class="select">
-                                        <select name="bottom">
-                                            <option value="default.cp">下パーツ</option>
-                                        </select>
-                                    </div>
+
+                                <div class="my-select">
+                                    <input id="sel-04" type="checkbox" class="sel-switch" />
+                                    <label class="sel-label button" for="sel-04">
+                                        <div>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            <span class="tree-nest"></span>
+                                            下のパーツ
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                    </label>
+                                    <div class="wrap-my-options" id="bottom"></div>
                                 </div>
                             </div>
                         </div>
@@ -214,22 +254,22 @@
             <div class="content has-text-centered">
                 <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita.</p>
                 <p>
-                    with <a href="https://rabbitear.org/"><strong>Rabbit Ear</strong></a>
+                    with <a href="https://rabbitear.org/" target="_blank"><strong>Rabbit Ear</strong></a>
                     by Kraft (licensed GNU GPLv3),
                     <br />
                     with
-                    <a href="https://github.com/edemaine/FOLD/"><strong>FOLD</strong></a>
+                    <a href="https://github.com/edemaine/FOLD/" target="_blank"><strong>FOLD</strong></a>
                     by Erik Demaine, Jason Ku, Robert Lang (licensed
-                    <a href="https://opensource.org/license/mit"> MIT </a>),
+                    <a href="https://opensource.org/license/mit" target="_blank"> MIT </a>),
                     <br />
                     with
-                    <a href="http://fontawesome.io"><strong>Font Awesome</strong></a>
-                    by Dave Gandy (<a href="https://fontawesome.com/v4/license/">license</a>),
+                    <a href="http://fontawesome.io" target="_blank"><strong>Font Awesome</strong></a>
+                    by Dave Gandy (<a href="https://fontawesome.com/v4/license/" target="_blank">license</a>),
                     <br />
                     with
-                    <a href="https://bulma.io/"><strong>Bulma</strong></a>
-                    by <a href="https://jgthms.com">Jeremy Thomas</a> (licensed
-                    <a href="https://opensource.org/license/mit">MIT</a>).
+                    <a href="https://bulma.io/" target="_blank"><strong>Bulma</strong></a>
+                    by <a href="https://jgthms.com" target="_blank">Jeremy Thomas</a> (licensed
+                    <a href="https://opensource.org/license/mit" target="_blank">MIT</a>).
                 </p>
             </div>
         </footer>

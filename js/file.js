@@ -86,10 +86,14 @@ export function cp2svgURL(cp) {
 }
 export function cp2pngURL(cp) {
     const canvas = document.createElement('canvas');
-    const margin = 20;
-    canvas.width = 400 + margin;
-    canvas.height = 400 + margin;
+    const margin = 10;
+    const size = 1024;
+    canvas.width = size;
+    canvas.height = size;
     const view = new CPView(canvas, cp);
+    view.scale = (size - margin) / 400;
+    view.preMouse.x = size / 2;
+    view.preMouse.y = size / 2;
     view.draw();
     return canvas.toDataURL('image/' + 'png');
 }

@@ -1,5 +1,5 @@
 {
     "path": { "top": "normal2.cp", "bottom": "smile.cp", "left": "heart.cp", "right": "heart.cp" },
     "colors": { "front": "#d71d1d", "back": "#fff5f9" },
-    "orders": [true, false, false, false, false, false, true]
+    "orders": [true, false, false, false, false, false, false]
 }

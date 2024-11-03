@@ -42,7 +42,7 @@ main {
 }
 
 .wrap-GUI {
-    max-height: 80vh;
+    height: 80vh;
     overflow-y: scroll;
 }
 
@@ -162,6 +162,7 @@ canvas {
     }
 
     .wrap-GUI {
+        height: auto;
         aspect-ratio: 1 / 1;
         overflow-y: scroll;
     }

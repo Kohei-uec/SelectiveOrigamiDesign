@@ -1,26 +1,18 @@
 import { Face } from './face.js';
 import { list } from '../cp_data/list.js';
-import {
-    cp2cpURL,
-    cp2pngURL,
-    cp2svgURL,
-    DLFile,
-    face2jsonURL,
-    fold2foldURL,
-    fold2pngURL,
-    fold2svgURL,
-    getFileText,
-    openLS,
-    saveLS,
-} from './file.js';
+import * as file from './file.js';
+import { preview } from './fold_preview.js';
 
 export class GUI {
     constructor(face, cp_view, fold_view) {
-        this.partsSelect = new PartsSelect(face, cp_view, fold_view);
         this.faceColor = new FaceColor(fold_view);
         this.faceOrder = new FaceOrders(face, fold_view);
+        this.partsSelect = new PartsSelect(face, cp_view, fold_view, this.faceOrder);
         this.fileIO = new FileIO(face, cp_view, fold_view, this);
+
+        //init
         this.setExample();
+        this.partsSelect.setView();
     }
 
     setExample() {
@@ -29,7 +21,7 @@ export class GUI {
             document.getElementById(v).addEventListener('click', async () => {
                 let path = document.location.href;
                 path = path.replace('index.html', '');
-                const project = JSON.parse(await getFileText(`${path}example/${v}.json`));
+                const project = JSON.parse(await file.getFileText(`${path}example/${v}.json`));
                 this.setProjectUI(project);
             });
         }
@@ -73,13 +65,13 @@ class FileIO {
         //add event listener
         document.getElementById('save_pro_btn').addEventListener('click', () => {
             const name = document.getElementById('save_pro_name').value;
-            if (openLS(name)) {
+            if (file.openLS(name)) {
                 //over write?
                 if (!confirm('overwrite?')) {
                     return;
                 }
             }
-            saveLS({
+            file.saveLS({
                 filename: name.length > 0 ? name : null,
                 obj: new Project(this.face, this.fold_view),
             });
@@ -88,7 +80,7 @@ class FileIO {
         });
         document.getElementById('open_pro_btn').addEventListener('click', () => {
             const name = document.getElementById('open_pro_name').value;
-            GUI.setProjectUI(openLS(name));
+            GUI.setProjectUI(file.openLS(name));
         });
         document.getElementById('upload_pro').addEventListener('change', () => {
             const file = document.getElementById('upload_pro').files[0];
@@ -100,10 +92,10 @@ class FileIO {
         });
         document.getElementById('dl_pro_btn').addEventListener('click', () => {
             const name = document.getElementById('dl_pro_name').value;
-            DLFile({
+            file.DLFile({
                 filename: name.length > 0 ? name : null,
                 filetype: 'json',
-                url: face2jsonURL(new Project(this.face, this.fold_view)),
+                url: file.face2jsonURL(new Project(this.face, this.fold_view)),
             });
         });
         document.getElementById('dl_cp_btn').addEventListener('click', () => {
@@ -150,53 +142,54 @@ class FileIO {
 
     //cp
     DL_cp_svg(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'svg',
-            url: cp2svgURL(this.cp_view.cp),
+            url: file.cp2svgURL(this.cp_view.cp),
         });
     }
     DL_cp_cp(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'cp',
-            url: cp2cpURL(this.cp_view.cp),
+            url: file.cp2cpURL(this.cp_view.cp),
         });
     }
     DL_cp_png(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'png',
-            url: cp2pngURL(this.cp_view.cp),
+            url: file.cp2pngURL(this.cp_view.cp),
         });
     }
     //fold
     DL_fold_svg(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'svg',
-            url: fold2svgURL(this.fold_view.svg),
+            url: file.fold2svgURL(this.fold_view.svg),
         });
     }
     DL_fold_fold(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'fold',
-            url: fold2foldURL(this.fold_view.folded),
+            url: file.fold2foldURL(this.fold_view.folded),
         });
     }
     async DL_fold_png(name) {
-        DLFile({
+        file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'png',
-            url: await fold2pngURL(this.fold_view.svg),
+            url: await file.fold2pngURL(this.fold_view.svg),
         });
     }
 }
+
 class PartsSelect {
-    constructor(face, cp_view, fold_view, names = Face.order) {
+    constructor(face, cp_view, fold_view, faceOrder) {
         //select and option
-        for (const name of names) {
+        for (const name of Face.order) {
             this[name] = document.getElementById(name);
 
             this.createOptionsList(this[name], name, (fn) => {
@@ -208,20 +201,19 @@ class PartsSelect {
         this.face = face;
         this.cp_view = cp_view;
         this.fold_view = fold_view;
-
-        //init
-        this.i = 0;
-        this.setView();
+        this.faceOrder = faceOrder;
     }
 
     async setView() {
         const cp = await this.face.buildCP();
         this.cp_view.cp = cp;
         this.cp_view.draw();
-        this.fold_view.setFOLD(cp, this.i);
+        this.fold_view.setFOLD(cp);
+        this.fold_view.setOrderNum(this.faceOrder.getOrderNum());
+        this.fold_view.draw();
     }
 
-    createOptionsList(select, name, handler) {
+    async createOptionsList(select, name, handler) {
         let ind = name;
         if (ind === 'left' || ind === 'right') {
             ind = 'side';
@@ -232,23 +224,26 @@ class PartsSelect {
             radio.name = name;
             radio.classList.add('my-option-radio');
             radio.id = name + fn;
+            if (fn === 'default.cp') {
+                radio.checked = true;
+            }
 
             const opt = document.createElement('label');
             opt.htmlFor = radio.id;
             opt.classList.add('my-option');
             opt.innerText = fn;
+            opt.style.fontSize = 'small';
             radio.addEventListener('change', () => {
                 if (radio.checked) {
                     handler(fn);
                 }
             });
 
-            const dummy = document.createElement('div');
-            dummy.style.width = '3em';
-            dummy.style.height = '3em';
-            dummy.style.backgroundColor = '#cfc';
+            const wrap_svg = await preview(name, fn);
+            wrap_svg.style.width = '100%';
+            wrap_svg.style.aspectRatio = '5 / 4';
 
-            opt.prepend(dummy);
+            opt.prepend(wrap_svg);
             select.append(radio, opt);
         }
     }
@@ -285,13 +280,20 @@ class FaceOrders {
         });
         this.setView();
     }
-    setView() {
+    getOrderNum() {
         const orders = document.getElementsByName('order');
         let n = 0;
-        orders.forEach((order, i) => {
-            n += 2 ** i * (order.checked ? 1 : 0);
-        });
-        this.fold_view.setOrderNum(n);
+        for (let i = 0; i < orders.length - 1; i++) {
+            n += 2 ** i * (orders[i].checked ? 1 : 0);
+        }
+        if (orders.length > 0) {
+            n += 2 ** (orders.length - 1) * (orders[orders.length - 1].checked ? 0 : 1); //last order default reversed
+        }
+        return n;
+    }
+    setView() {
+        this.fold_view.setOrderNum(this.getOrderNum());
+        this.fold_view.draw();
     }
 
     setUI() {
@@ -352,5 +354,6 @@ class FaceColor {
 
     setView() {
         this.fold_view.setColor(this.inputs[0].value, this.inputs[1].value);
+        this.fold_view.changeInLineStyle();
     }
 }

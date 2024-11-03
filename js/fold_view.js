@@ -14,7 +14,6 @@ export class FOLDView {
     setColor(front, back) {
         this.colorF = front;
         this.colorB = back;
-        this.draw();
     }
     changeInLineStyle() {
         //set inline style
@@ -30,15 +29,12 @@ export class FOLDView {
         }
     }
 
-    setFOLD(cp, i = 0) {
-        this.build(cp);
+    setFOLD(cp, i = 0, reverse) {
+        this.build(cp, reverse);
         this.folded.faceOrders = this.all[i % this.all.length];
-
-        this.draw();
     }
     setOrderNum(n) {
         this.folded.faceOrders = this.all[n % this.all.length];
-        this.draw();
     }
     getOrderNum() {
         return this.all.length;
@@ -52,7 +48,6 @@ export class FOLDView {
             faceOrders = this.all[i % this.all.length];
         }
         this.folded.faceOrders = faceOrders;
-        this.draw();
     }
     getCount() {
         const count = this.solved.count();
@@ -67,17 +62,17 @@ export class FOLDView {
         //display
         this.svg.removeChildren();
         this.svg.origami(this.folded, { strokeWidth: 0.001 });
-        setSVGPadding(this.svg);
+        setSVGPadding(this.svg, this.padding);
         this.changeInLineStyle();
     }
 
-    build(cp) {
+    build(cp, reverse) {
         //parse
         const t = {
             0: 'N',
             1: 'B',
-            2: 'V', //reverse
-            3: 'M', //reverse
+            2: reverse ? 'M' : 'V', //reverse
+            3: reverse ? 'V' : 'M', //reverse
         };
         const ass = [];
         for (const a of cp.edges_assignment) {

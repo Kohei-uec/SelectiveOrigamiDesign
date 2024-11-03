@@ -1,5 +1,5 @@
 {
     "path": { "top": "normal1.cp", "bottom": "triangle.cp", "left": "simple.cp", "right": "simple.cp" },
     "colors": { "front": "#353030", "back": "#fef8f6" },
-    "orders": [false, true]
+    "orders": [false, false]
 }

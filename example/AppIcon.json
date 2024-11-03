@@ -1,1 +1,5 @@
-{"path":{"top":"simpleL.cp","bottom":"smile.cp","left":"circle.cp","right":"arrow1.cp"},"colors":{"front":"#1c1c1c","back":"#ffe59e"},"orders":[false,false,false,true]}
+{
+    "path": { "top": "simpleL.cp", "bottom": "smile.cp", "left": "circle.cp", "right": "arrow1.cp" },
+    "colors": { "front": "#1c1c1c", "back": "#ffe59e" },
+    "orders": [false, false, false, false]
+}

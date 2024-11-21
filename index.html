@@ -84,6 +84,10 @@
                             <a class="navbar-item" id="example2">Example2</a>
                         </div>
                     </div>
+
+                    <a class="navbar-item js-modal-trigger" data-target="modal-help">
+                        <span><i class="fa-regular fa-circle-question"></i> Help</span>
+                    </a>
                 </div>
 
                 <div class="navbar-end"></div>
@@ -112,7 +116,7 @@
                                 <label for="back_color">back</label>
                                 <input type="color" class="input" id="back_color" value="#fef8f6" />
                             </div>
-                            <h3><i class="fa-solid fa-diagram-project"></i> Structure</h3>
+                            <h3><i class="fa-solid fa-diagram-project"></i> Parts</h3>
                             <div class="wrap-ui">
                                 <!--
                                 <div class="my-select">
@@ -427,6 +431,45 @@
                                     <span> <i class="fa-solid fa-download"></i> Download</span>
                                 </button>
                             </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-help">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <h1 class="subtitle is-1">Origami Face Maker</h1>
+                    <hr />
+                    <section>
+                        <h2 class="subtitle is-2">About</h2>
+                        <div class="content">
+                            Origami Face Maker は折り紙の「顔」を設計するWebアプリケーションです。
+                            自分好みの表情を作ってみてください。
+                        </div>
+                        <hr />
+                        <h2 class="subtitle is-2">How to Use</h2>
+                        <div class="content">
+                            使いたかたは非常に単純です。
+                            <ol>
+                                <li>各パーツを選択します</li>
+                                <li>
+                                    紙の重なりを調整します（重なりの順序はパーツ同士の干渉があるため、その場でシミュレーションされます）
+                                </li>
+                                <li>紙の色を調整します</li>
+                                <li>折り紙上級者は「展開図折り」に挑戦！</li>
+                            </ol>
+
+                            また、他にも数多くの機能が備わっています。
+                            <ul>
+                                <li>Example から顔のサンプルを読み込めます</li>
+                                <li>プロジェクトはブラウザまたはローカルに保存できます</li>
+                                <li>展開図は画像、SVG、CP形式で保存できます</li>
+                                <li>折り畳み図は画像、SVG、FOLD形式で保存できます</li>
+                            </ul>
                         </div>
                     </section>
                 </div>

@@ -21,7 +21,7 @@ export const list = {
         'thin.cp',
         'small.cp',
         'Jagged_teeth.cp',
-        'tears.cp',
+        //'tears.cp',
     ],
     side: [
         'default.cp',

@@ -2,6 +2,7 @@ import { Face } from './face.js';
 import { list } from '../cp_data/list.js';
 import * as file from './file.js';
 import { preview } from './fold_preview.js';
+import { prime_factorize } from './prime.js';
 
 export class GUI {
     constructor(face, cp_view, fold_view) {
@@ -19,9 +20,7 @@ export class GUI {
         const list = ['example1', 'example2', 'AppIcon'];
         for (const v of list) {
             document.getElementById(v).addEventListener('click', async () => {
-                let path = document.location.href;
-                path = path.replace('index.html', '');
-                const project = JSON.parse(await file.getFileText(`${path}example/${v}.json`));
+                const project = JSON.parse(await file.getFileText(`./example/${v}.json`));
                 this.setProjectUI(project);
             });
         }
@@ -34,7 +33,7 @@ export class GUI {
     }
 }
 
-class Project {
+export class Project {
     constructor(face, fold_view) {
         this.path = {};
         for (const part of Face.order) {
@@ -49,7 +48,7 @@ class Project {
         const orders = document.getElementsByName('order');
         this.orders = [];
         orders.forEach((val) => {
-            this.orders.push(val.checked);
+            this.orders.push(val.dataset.current);
         });
     }
 }
@@ -276,7 +275,16 @@ class FaceOrders {
     setOrders(inputs) {
         const orders = document.getElementsByName('order');
         orders.forEach((order, i) => {
-            order.checked = inputs[i] ?? false;
+            const max = order.dataset.max;
+            if (inputs[i]) {
+                if (typeof inputs[i] === 'Number') {
+                    order.dataset.current = inputs[i];
+                } else {
+                    //if true
+                    //increase number
+                    order.click();
+                }
+            }
         });
         this.setView();
     }
@@ -284,11 +292,19 @@ class FaceOrders {
         const orders = document.getElementsByName('order');
         let n = 0;
         for (let i = 0; i < orders.length - 1; i++) {
-            n += 2 ** i * (orders[i].checked ? 1 : 0);
+            const cur = orders[i].dataset.current;
+            const digitNum = orders[i].dataset.digitNum;
+            n += digitNum * (cur - 1);
         }
         if (orders.length > 0) {
-            n += 2 ** (orders.length - 1) * (orders[orders.length - 1].checked ? 0 : 1); //last order default reversed
+            //last order default +1
+            const order = orders[orders.length - 1];
+            const cur = order.dataset.current;
+            const digitNum = order.dataset.digitNum;
+            const max = order.dataset.max;
+            n += digitNum * (cur % max);
         }
+        console.log(n);
         return n;
     }
     setView() {
@@ -303,36 +319,49 @@ class FaceOrders {
             this.wrap.innerHTML = '<button class="button" disabled>no choice</p>'; //init text
             return;
         }
+        // prime_factorize
+        const pfArr = prime_factorize(n);
+        const digitNumArr = [1];
+        let overLap = 1;
+        pfArr.forEach((val, i) => {
+            overLap = pfArr[i - 1] === val ? overLap + 1 : 1;
+            digitNumArr[i + 1] = pfArr[i] ** overLap;
+        });
+
         //add elm
         this.wrap.innerHTML = ''; //remove all children, add text
-        for (let i = 0; i < Math.log2(n); i++) {
-            const elm = this.createButton(i);
-            this.wrap.appendChild(elm);
-
-            elm.addEventListener('change', () => {
+        //桁数の累積
+        pfArr.forEach((val, i) => {
+            const elm = this.createButton(val, digitNumArr[i], i);
+            elm.addEventListener('click', () => {
                 this.setView();
             });
-        }
+            this.wrap.appendChild(elm);
+        });
     }
-    createButton(i) {
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.name = 'order';
-        input.classList.add('order-reverse');
-        input.id = 'btn' + i;
-        input.style.display = 'none';
-
-        const label = document.createElement('label');
-        label.htmlFor = input.id;
-        const btn = document.createElement('div');
+    createButton(max, digitNum, i) {
+        const btn = document.createElement('button');
         btn.classList.add('button', 'order-btn');
-        btn.innerHTML = '<i class="fa-solid fa-shuffle"></i>';
+        btn.name = 'order';
+        btn.id = 'order-btn' + i;
 
-        label.appendChild(btn);
+        const options_num = max;
+        btn.innerHTML = '<i class="fa-solid fa-shuffle"></i> ';
+        const numElm = document.createElement('div');
+        //init number
+        btn.dataset.digitNum = digitNum;
+        btn.dataset.max = options_num;
+        btn.dataset.current = 1;
+        numElm.innerText = '1/' + options_num;
+        btn.appendChild(numElm);
+        //click event listener
+        btn.addEventListener('click', (e) => {
+            //increase number
+            btn.dataset.current = (btn.dataset.current % btn.dataset.max) + 1; //0~max-1=>1~max
+            numElm.innerText = btn.dataset.current + '/' + btn.dataset.max;
+        });
 
-        const wrap = document.createElement('div');
-        wrap.append(input, label);
-        return wrap;
+        return btn;
     }
 }
 class FaceColor {

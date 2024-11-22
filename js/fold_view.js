@@ -33,6 +33,9 @@ export class FOLDView {
         this.build(cp, reverse);
         this.folded.faceOrders = this.all[i % this.all.length];
     }
+    setPattern(pattern) {
+        this.folded.faceOrders = this.solved.compile(...pattern);
+    }
     setOrderNum(n) {
         this.folded.faceOrders = this.all[n % this.all.length];
     }
@@ -103,6 +106,7 @@ export class FOLDView {
         this.folded = folded;
         this.solved = solved;
         this.all = this.solved.compileAll();
+        //console.log(solved.count(), solved.leaves());
         if (typeof this.onBuild === 'function') {
             this.onBuild();
         }

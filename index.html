@@ -35,7 +35,7 @@
         <script type="module" src="./js/navbar.js"></script>
     </head>
     <body>
-        <nav class="navbar is-dark">
+        <nav class="navbar is-black">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/index.html"> ORIGAMI FACE MAKER </a>
                 <div class="navbar-burger js-burger" data-target="navbarExampleTransparentExample">
@@ -84,6 +84,13 @@
                             <a class="navbar-item" id="example2">Example2</a>
                         </div>
                     </div>
+
+                    <a class="navbar-item js-modal-trigger" data-target="modal-help">
+                        <span><i class="fa-regular fa-circle-question"></i> Help</span>
+                    </a>
+                    <a class="navbar-item feedback_link" href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank">
+                        <span><i class="fa-regular fa-comment-dots"></i> Feedback(アンケート)</span>
+                    </a>
                 </div>
 
                 <div class="navbar-end"></div>
@@ -112,7 +119,7 @@
                                 <label for="back_color">back</label>
                                 <input type="color" class="input" id="back_color" value="#fef8f6" />
                             </div>
-                            <h3><i class="fa-solid fa-diagram-project"></i> Structure</h3>
+                            <h3><i class="fa-solid fa-diagram-project"></i> Parts</h3>
                             <div class="wrap-ui">
                                 <!--
                                 <div class="my-select">
@@ -228,6 +235,7 @@
                             </div>
                         </label>
                         <section class="tab-content" id="cp_tab">
+                            <button class="button"><i class="fa-solid fa-arrow-rotate-right"></i></button>
                             <div class="wrap-canvas" id="wrap_cp_canvas">
                                 <canvas id="cp_canvas"></canvas>
                             </div>
@@ -255,24 +263,6 @@
         <footer class="footer">
             <div class="content has-text-centered">
                 <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita.</p>
-                <p>
-                    with <a href="https://rabbitear.org/" target="_blank"><strong>Rabbit Ear</strong></a>
-                    by Kraft (licensed GNU GPLv3),
-                    <br />
-                    with
-                    <a href="https://github.com/edemaine/FOLD/" target="_blank"><strong>FOLD</strong></a>
-                    by Erik Demaine, Jason Ku, Robert Lang (licensed
-                    <a href="https://opensource.org/license/mit" target="_blank"> MIT </a>),
-                    <br />
-                    with
-                    <a href="http://fontawesome.io" target="_blank"><strong>Font Awesome</strong></a>
-                    by Dave Gandy (<a href="https://fontawesome.com/v4/license/" target="_blank">license</a>),
-                    <br />
-                    with
-                    <a href="https://bulma.io/" target="_blank"><strong>Bulma</strong></a>
-                    by <a href="https://jgthms.com" target="_blank">Jeremy Thomas</a> (licensed
-                    <a href="https://opensource.org/license/mit" target="_blank">MIT</a>).
-                </p>
             </div>
         </footer>
 
@@ -426,6 +416,84 @@
                                 <button class="button is-primary" id="dl_fold_btn">
                                     <span> <i class="fa-solid fa-download"></i> Download</span>
                                 </button>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal is-active" id="modal-help">
+            <div class="modal-background"></div>
+            <button class="level-right modal-close is-large" aria-label="close"></button>
+            <div class="modal-content">
+                <div class="box">
+                    <h3 class="subtitle is-3">Origami Face Maker</h3>
+                    <hr />
+                    <section>
+                        <h4 class="subtitle is-4">About</h4>
+                        <div class="content">
+                            Origami Face Maker は折り紙の「顔」を設計するWebアプリケーションです。
+                            自分好みの表情を作ってみてください。
+                        </div>
+                        <hr />
+                        <h4 class="subtitle is-4">How to Use</h4>
+                        <div class="content">
+                            使いたかたは非常に単純です。
+                            <ol>
+                                <li>
+                                    各パーツを選択します
+                                    <br />
+                                    <img src="help/help1.svg" width="150" />
+                                </li>
+                                <li>
+                                    紙の重なりを調整します（重なりの順序はパーツ同士の干渉があるため、その場でシミュレーションされます）
+                                    <br />
+                                    <img src="help/help2.svg" width="150" />
+                                </li>
+                                <li>
+                                    紙の色を調整して完成です
+                                    <br /><img src="help/help3.svg" width="150" />
+                                </li>
+                                <li>折り紙上級者は「展開図折り」に挑戦！</li>
+                            </ol>
+
+                            また、他にも数多くの機能が備わっています。
+                            <ul>
+                                <li>Example から顔のサンプルを読み込めます</li>
+                                <li>プロジェクトはブラウザまたはローカルに保存できます</li>
+                                <li>展開図は画像、SVG、CP形式で保存できます</li>
+                                <li>折り畳み図は画像、SVG、FOLD形式で保存できます</li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <h4 class="subtitle is-4">Feedback</h4>
+                        アプリの体験後は、アンケート調査にご協力ください。
+                        <a href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank" class="feedback_link">
+                            https://forms.gle/fvAqtBiWpxd3yQHz8
+                        </a>
+
+                        <hr />
+                        <div class="content has-text-centered">
+                            <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita, Kodama Lab., UEC.</p>
+                            <p>
+                                with <a href="https://rabbitear.org/" target="_blank"><strong>Rabbit Ear</strong></a>
+                                by Kraft (licensed GNU GPLv3),
+                                <br />
+                                with
+                                <a href="https://github.com/edemaine/FOLD/" target="_blank"><strong>FOLD</strong></a>
+                                by Erik Demaine, Jason Ku, Robert Lang (licensed
+                                <a href="https://opensource.org/license/mit" target="_blank"> MIT </a>),
+                                <br />
+                                with
+                                <a href="http://fontawesome.io" target="_blank"><strong>Font Awesome</strong></a>
+                                by Dave Gandy (<a href="https://fontawesome.com/v4/license/" target="_blank">license</a
+                                >),
+                                <br />
+                                with
+                                <a href="https://bulma.io/" target="_blank"><strong>Bulma</strong></a>
+                                by <a href="https://jgthms.com" target="_blank">Jeremy Thomas</a> (licensed
+                                <a href="https://opensource.org/license/mit" target="_blank">MIT</a>).
                             </p>
                         </div>
                     </section>

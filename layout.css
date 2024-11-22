@@ -61,7 +61,7 @@ canvas {
     margin: 0;
     padding: 0;
 }
-@media screen and (width <= 900px) {
+@media screen and (width <= 900px), screen and (width <= 150vh) {
     /* 480px以下に適用されるCSS（スマホ用） */
     :root {
         --side-margin: 0.5em;

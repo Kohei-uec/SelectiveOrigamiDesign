@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta charset="utf-8" />
+        <title>ORIGAMI FM</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
+        <script src="https://kit.fontawesome.com/10f2f78404.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./layout.css" />
+        <link rel="stylesheet" href="./my-select.css" />
+
+        <link rel="icon" type="image/png" href="./favicon/favicon-48x48.png" sizes="48x48" />
+        <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+        <link rel="shortcut icon" href="./favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="OrigamiFace" />
+        <link rel="manifest" href="./favicon/site.webmanifest" />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "rabbit-ear": "https://rabbit-ear.github.io/rabbit-ear/src/index.js"
+                }
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.1/math.js"></script>
+        <script type="module">
+            import { FOLDView } from './js/fold_view.js';
+            import { Face } from './js/face.js';
+            import { prime_factorize } from './js/prime.js';
+
+            //data fetch
+            const url =
+                'https://script.google.com/macros/s/AKfycbwXE_VDYTkJP8OQ80VIjYAB9cFREZ36mjVDPziDdOJKoaTw1rXXdSYJ3WvaLc-bHDes/exec';
+            const resp = await fetch(url);
+            const data = await resp.json();
+            const header = data.shift();
+
+            //end loading
+            document.getElementById('loading').style.display = 'none';
+
+            const wrap = document.getElementsByTagName('main')[0];
+            for (const log of data) {
+                const project = JSON.parse(log[header.indexOf('oriface')]);
+                const svg = await previewSVG(project);
+                wrap.appendChild(svg);
+            }
+            console.log('load', header, data);
+
+            async function previewSVG(project) {
+                //face
+                const face = new Face();
+                for (const part of Face.order) {
+                    face.setParts(part, project.path[part]);
+                }
+                //cp
+                const cp = await face.buildCP();
+
+                //view
+                const wrap_svg = document.createElement('div');
+                wrap_svg.classList.add('preview');
+                const view = new FOLDView(wrap_svg);
+                view.padding = 5;
+                view.setFOLD(cp);
+                view.setColor(project.colors.front, project.colors.back);
+                view.setOrderNum(orderNum(project.orders, view));
+                view.draw();
+
+                return wrap_svg;
+            }
+
+            function orderNum(orders, view) {
+                //get order pattern
+                const length = view.getOrderNum();
+                if (length <= 1) {
+                    return 0;
+                }
+                // prime_factorize
+                const pfArr = prime_factorize(length);
+                const digitNumArr = [1];
+                let overLap = 1;
+                pfArr.forEach((val, i) => {
+                    overLap = pfArr[i - 1] === val ? overLap + 1 : 1;
+                    digitNumArr[i + 1] = pfArr[i] ** overLap;
+                });
+                let n = 0;
+                for (let i = 0; i < orders.length - 1; i++) {
+                    const cur = orders[i];
+                    const digitNum = digitNumArr[i];
+                    n += digitNum * (cur - 1);
+                }
+                if (orders.length > 0) {
+                    //last order default +1
+                    const i = orders.length - 1;
+                    const cur = orders[i];
+                    const digitNum = digitNumArr[i];
+                    const max = pfArr[i];
+                    n += digitNum * (cur % max);
+                }
+                return n;
+            }
+        </script>
+        <style>
+            main {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .preview {
+                width: 25%;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div id="loading">loading...</div>
+        </main>
+    </body>
+</html>

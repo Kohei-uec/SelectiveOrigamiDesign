@@ -35,7 +35,7 @@ export class GUI {
     }
 }
 
-class Project {
+export class Project {
     constructor(face, fold_view) {
         this.path = {};
         for (const part of Face.order) {

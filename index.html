@@ -35,7 +35,7 @@
         <script type="module" src="./js/navbar.js"></script>
     </head>
     <body>
-        <nav class="navbar is-dark">
+        <nav class="navbar is-black">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/index.html"> ORIGAMI FACE MAKER </a>
                 <div class="navbar-burger js-burger" data-target="navbarExampleTransparentExample">
@@ -87,6 +87,9 @@
 
                     <a class="navbar-item js-modal-trigger" data-target="modal-help">
                         <span><i class="fa-regular fa-circle-question"></i> Help</span>
+                    </a>
+                    <a class="navbar-item feedback_link" href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank">
+                        <span><i class="fa-regular fa-comment-dots"></i> Feedback(アンケート)</span>
                     </a>
                 </div>
 
@@ -232,6 +235,7 @@
                             </div>
                         </label>
                         <section class="tab-content" id="cp_tab">
+                            <button class="button"><i class="fa-solid fa-arrow-rotate-right"></i></button>
                             <div class="wrap-canvas" id="wrap_cp_canvas">
                                 <canvas id="cp_canvas"></canvas>
                             </div>
@@ -419,37 +423,37 @@
             </div>
         </div>
 
-        <div class="modal" id="modal-help">
+        <div class="modal is-active" id="modal-help">
             <div class="modal-background"></div>
             <button class="level-right modal-close is-large" aria-label="close"></button>
             <div class="modal-content">
                 <div class="box">
-                    <h1 class="subtitle is-1">Origami Face Maker</h1>
+                    <h3 class="subtitle is-3">Origami Face Maker</h3>
                     <hr />
                     <section>
-                        <h2 class="subtitle is-2">About</h2>
+                        <h4 class="subtitle is-4">About</h4>
                         <div class="content">
                             Origami Face Maker は折り紙の「顔」を設計するWebアプリケーションです。
                             自分好みの表情を作ってみてください。
                         </div>
                         <hr />
-                        <h2 class="subtitle is-2">How to Use</h2>
+                        <h4 class="subtitle is-4">How to Use</h4>
                         <div class="content">
                             使いたかたは非常に単純です。
                             <ol>
                                 <li>
                                     各パーツを選択します
                                     <br />
-                                    <img src="help/help1.svg" />
+                                    <img src="help/help1.svg" width="150" />
                                 </li>
                                 <li>
                                     紙の重なりを調整します（重なりの順序はパーツ同士の干渉があるため、その場でシミュレーションされます）
                                     <br />
-                                    <img src="help/help2.svg" />
+                                    <img src="help/help2.svg" width="150" />
                                 </li>
                                 <li>
-                                    紙の色を調整します
-                                    <br /><img src="help/help3.svg" />
+                                    紙の色を調整して完成です
+                                    <br /><img src="help/help3.svg" width="150" />
                                 </li>
                                 <li>折り紙上級者は「展開図折り」に挑戦！</li>
                             </ol>
@@ -462,10 +466,16 @@
                                 <li>折り畳み図は画像、SVG、FOLD形式で保存できます</li>
                             </ul>
                         </div>
+                        <hr />
+                        <h4 class="subtitle is-4">Feedback</h4>
+                        アプリの体験後は、アンケート調査にご協力ください。
+                        <a href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank" class="feedback_link">
+                            https://forms.gle/fvAqtBiWpxd3yQHz8
+                        </a>
 
                         <hr />
                         <div class="content has-text-centered">
-                            <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita.</p>
+                            <p><strong>ORIGAMI FACE MAKER</strong> by Kohei Yamashita, Kodama Lab., UEC.</p>
                             <p>
                                 with <a href="https://rabbitear.org/" target="_blank"><strong>Rabbit Ear</strong></a>
                                 by Kraft (licensed GNU GPLv3),

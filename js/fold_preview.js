@@ -20,7 +20,7 @@ export async function preview(type, fileName) {
 
 async function buildCP(part, fileName) {
     const cp = new CP();
-    let path = './cp_data/';
+    let path = '/cp_data/';
     if (part === 'left' || part === 'right') {
         path += 'side/';
     } else {

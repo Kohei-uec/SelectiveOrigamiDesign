@@ -20,7 +20,7 @@ export class GUI {
         const list = ['example1', 'example2', 'AppIcon'];
         for (const v of list) {
             document.getElementById(v).addEventListener('click', async () => {
-                const project = JSON.parse(await file.getFileText(`./example/${v}.json`));
+                const project = JSON.parse(await file.getFileText(`/example/${v}.json`));
                 this.setProjectUI(project);
             });
         }

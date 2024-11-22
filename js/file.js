@@ -2,6 +2,11 @@ import { CP, edgeStr } from './cp.js';
 import { CPView } from './cp_view.js';
 
 export async function getFileText(path) {
+    //相対パスなら絶対パスに変換する
+    if (path[0] === '.') {
+        const root = location.protocol + '//' + location.host;
+        path = root + path.slice(1);
+    }
     return await (await fetch(path)).text();
 }
 

@@ -14,6 +14,16 @@ export class GUI {
         //init
         this.setExample();
         this.partsSelect.setView();
+        this.initCPreset(cp_view);
+    }
+
+    //cp reset btn
+    initCPreset(cp_view) {
+        document.getElementById('cp_reset_btn').addEventListener('click', () => {
+            cp_view.transVec.x = 0;
+            cp_view.transVec.y = 0;
+            cp_view.rescale();
+        });
     }
 
     setExample() {

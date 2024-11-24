@@ -24,6 +24,8 @@ export class GUI {
             cp_view.transVec.y = 0;
             cp_view.rescale();
         });
+        //fit window size
+        cp_view.rescale();
     }
 
     setExample() {

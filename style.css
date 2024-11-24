@@ -49,3 +49,9 @@ svg {
 .tree-nest:last-child::after {
     content: '＞';
 }
+
+#cp_reset_btn {
+    position: relative;
+    top: 10px;
+    left: 10px;
+}

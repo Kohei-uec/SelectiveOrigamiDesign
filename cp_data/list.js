@@ -25,6 +25,7 @@ export const list = {
         'Jagged_teeth.cp',
         'tongue.cp',
         'arch.cp',
+        'sharp_smile.cp',
         //'tears.cp',
     ],
     side: [
@@ -69,6 +70,7 @@ const options_list = {
             'small.cp',
             'Jagged_teeth.cp',
             'tongue.cp',
+            'sharp_smile.cp',
         ],
         left: ['big.cp'],
         right: [

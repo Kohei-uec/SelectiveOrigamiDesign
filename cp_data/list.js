@@ -10,7 +10,9 @@ export const list = {
         'simpleM.cp',
         'simpleL.cp',
         'worried.cp',
+        'worriedL.cp',
         'thin.cp',
+        'long.cp',
     ],
     bottom: [
         'default.cp',
@@ -21,11 +23,15 @@ export const list = {
         'thin.cp',
         'small.cp',
         'Jagged_teeth.cp',
+        'tongue.cp',
+        'arch.cp',
+        'sharp_smile.cp',
         //'tears.cp',
     ],
     side: [
         'default.cp',
         'simple.cp',
+        'big.cp',
         'circle.cp',
         'heart.cp',
         'arrow1.cp',
@@ -46,15 +52,27 @@ export const list = {
 //preview option
 export function getOptions(part, fileName) {
     return {
+        face_reverse: options_list.face_reverse[part].includes(fileName),
         reverse: options_list.reverse[part].includes(fileName),
         order: options_list.order[part][fileName] ?? 0,
     };
 }
 const options_list = {
+    face_reverse: { top: ['worriedL.cp'], bottom: [], left: [], right: [] },
     reverse: {
-        top: ['none.cp'],
-        bottom: ['triangle.cp', 'smile.cp', 'rect.cp', 'sharp.cp', 'thin.cp', 'small.cp', 'Jagged_teeth.cp'],
-        left: [],
+        top: ['none.cp', 'worriedL.cp'],
+        bottom: [
+            'triangle.cp',
+            'smile.cp',
+            'rect.cp',
+            'sharp.cp',
+            'thin.cp',
+            'small.cp',
+            'Jagged_teeth.cp',
+            'tongue.cp',
+            'sharp_smile.cp',
+        ],
+        left: ['big.cp'],
         right: [
             'simple.cp',
             'arrow1.cp',
@@ -69,6 +87,7 @@ const options_list = {
             'dia.cp',
             'arch.cp',
             'zigzag.cp',
+            'big.cp',
         ],
     },
     order: {

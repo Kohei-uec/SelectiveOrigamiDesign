@@ -9,11 +9,13 @@ export class FOLDView {
         //init style
         this.colorF = '#353030';
         this.colorB = '#fef8f6';
+        this.stroke_opacity = 1;
     }
 
-    setColor(front, back) {
+    setColor(front, back, stroke) {
         this.colorF = front;
         this.colorB = back;
+        this.stroke_opacity = stroke;
     }
     changeInLineStyle() {
         //set inline style
@@ -26,6 +28,9 @@ export class FOLDView {
             } else {
                 poly.setAttribute('fill', this.colorB);
             }
+
+            //stroke color
+            poly.setAttribute('stroke-opacity', this.stroke_opacity);
         }
     }
 
@@ -102,6 +107,7 @@ export class FOLDView {
         const face = graph.nearestFace([0, 0]);
         const folded = graph.flatFolded([face]);
         const solved = ear.layer(folded);
+        //console.log(folded, face, reverse);
 
         this.folded = folded;
         this.solved = solved;

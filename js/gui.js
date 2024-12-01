@@ -1,5 +1,5 @@
 import { Face } from './face.js';
-import { list } from '../cp_data/list.js';
+import { list, getOptions } from '../cp_data/list.js';
 import * as file from './file.js';
 import { preview } from './fold_preview.js';
 import { prime_factorize } from './prime.js';
@@ -219,7 +219,13 @@ class PartsSelect {
         const cp = await this.face.buildCP();
         this.cp_view.cp = cp;
         this.cp_view.draw();
-        this.fold_view.setFOLD(cp);
+        let reverse = 1; //-1 or 1, (-1:true)
+        for (const part of Face.order) {
+            const options = getOptions(part, this.face.path[part]);
+            reverse *= options.face_reverse ? -1 : 1;
+        }
+        //console.log('rev:', reverse === -1);
+        this.fold_view.setFOLD(cp, 0, reverse === -1);
         this.fold_view.setOrderNum(this.faceOrder.getOrderNum());
         this.fold_view.draw();
     }
@@ -377,9 +383,9 @@ class FaceOrders {
     }
 }
 class FaceColor {
-    constructor(fold_view, fid = 'front_color', bid = 'back_color') {
+    constructor(fold_view, fid = 'front_color', bid = 'back_color', sid = 'stroke_opacity') {
         this.fold_view = fold_view;
-        this.inputs = [document.getElementById(fid), document.getElementById(bid)];
+        this.inputs = [document.getElementById(fid), document.getElementById(bid), document.getElementById(sid)];
         this.inputs.forEach((elm) => {
             elm.addEventListener('change', (e) => {
                 this.setView();
@@ -390,11 +396,13 @@ class FaceColor {
     setColor(colors) {
         this.inputs[0].value = colors.front;
         this.inputs[1].value = colors.back;
+        this.inputs[2].value = colors.stroke_opacity ?? 1;
         this.setView();
     }
 
     setView() {
-        this.fold_view.setColor(this.inputs[0].value, this.inputs[1].value);
+        console.log(this.inputs[2].value);
+        this.fold_view.setColor(this.inputs[0].value, this.inputs[1].value, this.inputs[2].value);
         this.fold_view.changeInLineStyle();
     }
 }

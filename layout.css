@@ -142,6 +142,10 @@ canvas {
         overflow: visible;
         opacity: 1;
     }
+
+    footer {
+        display: none;
+    }
 }
 @media screen and (width <= 600px) {
     .wrap-3tabs {

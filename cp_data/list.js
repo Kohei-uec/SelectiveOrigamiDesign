@@ -46,6 +46,7 @@ export const list = {
         'dia.cp',
         'arch.cp',
         'zigzag.cp',
+        'angry.cp',
     ],
 };
 
@@ -72,7 +73,7 @@ const options_list = {
             'tongue.cp',
             'sharp_smile.cp',
         ],
-        left: ['big.cp'],
+        left: ['big.cp', 'angry.cp'],
         right: [
             'simple.cp',
             'arrow1.cp',
@@ -88,6 +89,7 @@ const options_list = {
             'arch.cp',
             'zigzag.cp',
             'big.cp',
+            'angry.cp',
         ],
     },
     order: {

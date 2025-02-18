@@ -57,19 +57,22 @@ export function face2jsonURL(face) {
 }
 
 //fold
-export async function fold2pngURL(svgNode) {
+export async function fold2pngURL(svgNode, radio = 1) {
+    const width = 1024;
+    const height = width * radio;
+    const svgWidth = Math.min(width, height);
     svgNode = svgNode.cloneNode(true);
-    svgNode.setAttribute('width', '1024px');
-    svgNode.setAttribute('height', '1024px');
+    svgNode.setAttribute('width', svgWidth + 'px');
+    svgNode.setAttribute('height', svgWidth + 'px'); //svgは正方形
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = 1024;
-    canvas.height = 1024;
+    canvas.width = width;
+    canvas.height = height;
     const img = new Image();
     img.src = fold2svgURL(svgNode);
     await img.decode();
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, (width - svgWidth) / 2, (height - svgWidth) / 2, svgWidth, svgWidth);
     return canvas.toDataURL('image/' + 'png');
 }
 export function fold2foldURL(fold) {

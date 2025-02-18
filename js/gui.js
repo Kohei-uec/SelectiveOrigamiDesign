@@ -124,13 +124,14 @@ class FileIO {
         document.getElementById('dl_fold_btn').addEventListener('click', () => {
             const name = document.getElementById('dl_fold_name').value;
             const type = document.getElementById('dl_fold_type').value;
+            const ratio = document.getElementById('dl_fold_ratio').value;
             console.log(name, type);
             if (type === 'fold') {
                 this.DL_fold_fold(name);
             } else if (type === 'svg') {
                 this.DL_fold_svg(name);
             } else if (type === 'png') {
-                this.DL_fold_png(name);
+                this.DL_fold_png(name, ratio);
             }
         });
     }
@@ -188,11 +189,11 @@ class FileIO {
             url: file.fold2foldURL(this.fold_view.folded),
         });
     }
-    async DL_fold_png(name) {
+    async DL_fold_png(name, radio = 1) {
         file.DLFile({
             filename: name.length > 0 ? name : null,
             filetype: 'png',
-            url: await file.fold2pngURL(this.fold_view.svg),
+            url: await file.fold2pngURL(this.fold_view.svg, radio),
         });
     }
 }

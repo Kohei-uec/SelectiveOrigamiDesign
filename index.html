@@ -120,15 +120,7 @@
                                 <input type="color" class="input" id="back_color" value="#fef8f6" />
                                 <label for="stroke_color">stroke-opacity</label>
                                 <div class="input">
-                                    <input
-                                        type="range"
-                                        id="stroke_opacity"
-                                        value="1"
-                                        max="1"
-                                        min="0"
-                                        step="0.1"
-                                        style="width: 100%"
-                                    />
+                                    <input type="range" id="stroke_opacity" value="1" max="1" min="0" step="0.1" style="width: 100%" />
                                 </div>
                             </div>
                             <h3><i class="fa-solid fa-diagram-project"></i> Parts</h3>
@@ -413,6 +405,12 @@
                     </div>
                     <section>
                         <label class="label"> Export folded figure file</label>
+                        <div class="field">
+                            <label for="dl_fold_ratio">png ratio</label>
+                            <p class="control">
+                                <input type="range" max="2" min="0.5" step="0.1" id="dl_fold_ratio" />
+                            </p>
+                        </div>
                         <div class="field has-addons">
                             <p class="control">
                                 <input class="input" type="text" placeholder="file name" id="dl_fold_name" />
@@ -446,10 +444,7 @@
                     <hr />
                     <section>
                         <h4 class="subtitle is-4">About</h4>
-                        <div class="content">
-                            Origami Face Maker は折り紙の「顔」を設計するWebアプリケーションです。
-                            自分好みの表情を作ってみてください。
-                        </div>
+                        <div class="content">Origami Face Maker は折り紙の「顔」を設計するWebアプリケーションです。 自分好みの表情を作ってみてください。</div>
                         <hr />
                         <h4 class="subtitle is-4">How to Use</h4>
                         <div class="content">
@@ -483,9 +478,7 @@
                         <hr />
                         <h4 class="subtitle is-4">Feedback</h4>
                         アプリの体験後は、アンケート調査にご協力ください。
-                        <a href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank" class="feedback_link">
-                            https://forms.gle/fvAqtBiWpxd3yQHz8
-                        </a>
+                        <a href="https://forms.gle/fvAqtBiWpxd3yQHz8" target="_blank" class="feedback_link"> https://forms.gle/fvAqtBiWpxd3yQHz8 </a>
 
                         <hr />
                         <div class="content has-text-centered">
@@ -501,13 +494,11 @@
                                 <br />
                                 with
                                 <a href="http://fontawesome.io" target="_blank"><strong>Font Awesome</strong></a>
-                                by Dave Gandy (<a href="https://fontawesome.com/v4/license/" target="_blank">license</a
-                                >),
+                                by Dave Gandy (<a href="https://fontawesome.com/v4/license/" target="_blank">license</a>),
                                 <br />
                                 with
                                 <a href="https://bulma.io/" target="_blank"><strong>Bulma</strong></a>
-                                by <a href="https://jgthms.com" target="_blank">Jeremy Thomas</a> (licensed
-                                <a href="https://opensource.org/license/mit" target="_blank">MIT</a>).
+                                by <a href="https://jgthms.com" target="_blank">Jeremy Thomas</a> (licensed <a href="https://opensource.org/license/mit" target="_blank">MIT</a>).
                             </p>
                         </div>
                     </section>

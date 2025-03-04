@@ -388,7 +388,7 @@ class FaceColor {
         this.fold_view = fold_view;
         this.inputs = [document.getElementById(fid), document.getElementById(bid), document.getElementById(sid)];
         this.inputs.forEach((elm) => {
-            elm.addEventListener('change', (e) => {
+            elm.addEventListener('input', (e) => {
                 this.setView();
             });
         });
